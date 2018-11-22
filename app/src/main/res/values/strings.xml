@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">MyCar</string>
     <string name="action_settings">Settings</string>
+    <string name="action_delete">Delete</string>
+    <string name="default_carname">Car name goes here</string>
+    <string name="default_platenumber">Licence plate number goes here</string>
+    <string name="cardialog_title_add">Add car name</string>
+    <string name="cardialog_title_edit">Edit car details</string>
+    <string name="cardialog_carname_hint">Enter car name</string>
+    <string name="cardialog_platenumber_hint">Enter licence plate number</string>
+    <string name="cardetail_name">MyCar - Details</string>
+    <string name="cardetail_carname">Car name</string>
+    <string name="cardetail_platenumber">Licence plate number</string>
 </resources>
+
