@@ -12,13 +12,15 @@
     <string name="action_delete">Delete</string>
     <string name="default_carname">Car name goes here</string>
     <string name="default_platenumber">Licence plate number goes here</string>
-    <string name="cardialog_title_add">Add car name</string>
-    <string name="cardialog_title_edit">Edit car details</string>
-    <string name="cardialog_carname_hint">Enter car name</string>
-    <string name="cardialog_platenumber_hint">Enter licence plate number</string>
     <string name="cardetail_name">MyCar - Car Details</string>
     <string name="cardetail_carname">Car name</string>
+    <string name="cardialog_carname_hint">Enter car name</string>
     <string name="cardetail_platenumber">Licence plate number</string>
+    <string name="cardialog_platenumber_hint">Enter licence plate number</string>
+    <string name="cardetail_carimageurl">car image URL</string>
+    <string name="cardialog_carimageurl_hint">Enter car image URL</string>
+    <string name="cardialog_title_add">Add a new car</string>
+    <string name="cardialog_title_edit">Edit car details</string>
     <string name="content_car_image">car photo</string>
 </resources>
 

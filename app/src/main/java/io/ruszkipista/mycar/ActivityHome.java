@@ -36,13 +36,13 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 public class ActivityHome extends AppCompatActivity {
-    private FirebaseFirestore mDB;
     private TextView mCarNameTextView;
     private TextView mPlateNumberTextView;
     private ImageView mCarImageImageView;
     private List<DocumentSnapshot> mCarSnapshots = new ArrayList<>();
     private int mActualCarIndex = -1;
     private DocumentSnapshot mCar = null;
+    private CollectionReference carRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +55,14 @@ public class ActivityHome extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showInputDialog();
+                showTransactionInputDialog();
             }
         });
 
         mCarNameTextView = findViewById(R.id.home_carname_field);
         mPlateNumberTextView = findViewById(R.id.home_platenumber_field);
         mCarImageImageView = findViewById(R.id.home_car_image);
-        mDB = FirebaseFirestore.getInstance();
 
-        CollectionReference carRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
         carRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -133,34 +131,20 @@ public class ActivityHome extends AppCompatActivity {
                 displayCar();
                 return true;
 
+            case R.id.action_modify_car:
+                showCarInputDialog();
+                return true;
         };
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    private void showTransactionInputDialog() {
+    }
+
+    private void showCarInputDialog() {
+        DialogCarInput dialog = new DialogCarInput();
         View view = getLayoutInflater().inflate(R.layout.dialog_cardetail,null,false);
-        builder.setTitle(R.string.cardialog_title_add);
-        builder.setView(view);
-        final EditText carNameEditTextView = view.findViewById(R.id.cardetail_carname_field);
-        final EditText plateNumberEditTextView = view.findViewById(R.id.cardetail_platenumber_field);
-
-        builder.setNegativeButton(android.R.string.cancel,null);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String carName = carNameEditTextView.getText().toString();
-                String plateNumber = plateNumberEditTextView.getText().toString();
-
-//              create new item with captured details
-                Map<String, Object> car = new HashMap< >();
-                car.put(Constants.KEY_CARNAME,carName);
-                car.put(Constants.KEY_PLATENUMBER,plateNumber);
-                car.put(Constants.KEY_CREATED, new Date());
-                FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car).add(car);
-            }
-        });
-        builder.create().show();
+        dialog.showCarInputDialog(this, view, mCar, carRef);
     }
 
 }
