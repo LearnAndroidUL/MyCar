@@ -89,11 +89,11 @@ public class ActivityCarDetail extends AppCompatActivity {
                 String plateNumber = plateNumberEditTextView.getText().toString();
 
 //              update item with captured details
-                Map<String, Object> movieQuote = new HashMap< >();
-                movieQuote.put(Constants.KEY_CARNAME,carName);
-                movieQuote.put(Constants.KEY_PLATENUMBER,plateNumber);
-                movieQuote.put(Constants.KEY_CREATED, new Date());
-                mDocRef.update(movieQuote);
+                Map<String, Object> car = new HashMap< >();
+                car.put(Constants.KEY_CARNAME,carName);
+                car.put(Constants.KEY_PLATENUMBER,plateNumber);
+                car.put(Constants.KEY_CREATED, new Date());
+                mDocRef.update(car);
             }
         });
         builder.create().show();
@@ -113,7 +113,7 @@ public class ActivityCarDetail extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_delete:
+            case R.id.action_cardetail_delete:
                 mDocRef.delete();
                 finish();
                 return true;

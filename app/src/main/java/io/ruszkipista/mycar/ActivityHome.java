@@ -1,26 +1,48 @@
 package io.ruszkipista.mycar;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.koushikdutta.ion.Ion;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 public class ActivityHome extends AppCompatActivity {
+    private FirebaseFirestore mDB;
+    private TextView mCarNameTextView;
+    private TextView mPlateNumberTextView;
+    private ImageView mCarImageImageView;
+    private List<DocumentSnapshot> mCarSnapshots = new ArrayList<>();
+    private int mActualCarIndex = -1;
+    private DocumentSnapshot mCar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +51,6 @@ public class ActivityHome extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.car_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        final CarAdapter carAdapter = new CarAdapter();
-        recyclerView.setAdapter(carAdapter);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +58,62 @@ public class ActivityHome extends AppCompatActivity {
                 showInputDialog();
             }
         });
+
+        mCarNameTextView = findViewById(R.id.home_carname_field);
+        mPlateNumberTextView = findViewById(R.id.home_platenumber_field);
+        mCarImageImageView = findViewById(R.id.home_car_image);
+        mDB = FirebaseFirestore.getInstance();
+
+        CollectionReference carRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
+        carRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(Constants.log_tag, "Firebase listening failed!");
+                            return;
+                        } else {
+                            mCarSnapshots = queryDocumentSnapshots.getDocuments();
+                            displayCar();
+                        }
+                    }
+                });
+
     }
 
+    private void displayCar() {
+        if (mActualCarIndex < 0) {
+            if (mCarSnapshots.size() > 0) {
+                mActualCarIndex = 0;
+                mCar = mCarSnapshots.get(mActualCarIndex);
+            }
+        } else {
+            mCar = mCarSnapshots.get(mActualCarIndex);
+        }
+        if (mCar != null) {
+            mCarNameTextView.setText((String)mCar.get(Constants.KEY_CARNAME));
+            mPlateNumberTextView.setText((String)mCar.get(Constants.KEY_PLATENUMBER));
+            String url = (String)mCar.get(Constants.KEY_CARIMAGEURL);
+            if (!url.isEmpty()) Ion.with(mCarImageImageView).load(url);
+            else mCarImageImageView.setImageResource(R.mipmap.ic_launcher);
+        }
+
+    }
+
+    private void getCarNext() {
+        mActualCarIndex = (mActualCarIndex + 1) % mCarSnapshots.size();
+    }
+
+    public void callActivityCarDetail(View view) {
+        switch (view.getId()){
+            case R.id.home_car_image:
+                Context context = view.getContext();
+                Intent intent = new Intent(context,ActivityCarDetail.class);
+                intent.putExtra(Constants.EXTRA_DOC_ID, mCar.getId());
+                context.startActivity(intent);
+                return;
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,18 +123,18 @@ public class ActivityHome extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (menuItem.getItemId()){
+            case R.id.action_swap_car:
+                getCarNext();
+                displayCar();
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        };
+        return super.onOptionsItemSelected(menuItem);
     }
 
     private void showInputDialog() {

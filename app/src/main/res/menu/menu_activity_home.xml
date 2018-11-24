@@ -3,8 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="io.ruszkipista.mycar.ActivityHome">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_swap_car"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_switch_car"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_swap_horizontal"/>
+    <item
+        android:id="@+id/action_fuel_consumption"
+        android:orderInCategory="100"
+        android:title="@string/action_fuel_consumption"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_transaction_list"
+        android:orderInCategory="100"
+        android:title="@string/action_transaction_list"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_modify_car"
+        android:orderInCategory="100"
+        android:title="@string/action_modify_car"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_modify_material"
+        android:orderInCategory="100"
+        android:title="@string/action_modify_material"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_modify_partner"
+        android:orderInCategory="100"
+        android:title="@string/action_modify_partner"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_valuation"
+        android:orderInCategory="100"
+        android:title="@string/action_valuation"
         app:showAsAction="never" />
 </menu>

@@ -23,11 +23,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class CarAdapter  extends RecyclerView.Adapter<CarAdapter.CarViewHolder>{
+public class AdapterCar extends RecyclerView.Adapter<AdapterCar.CarViewHolder>{
     private List<DocumentSnapshot> mCarSnapshots = new ArrayList<>();
     private RecyclerView mRecyclerView;
 
-    public CarAdapter(){
+    public AdapterCar(){
         CollectionReference carRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
         carRef
                 .orderBy(Constants.KEY_CREATED, Query.Direction.DESCENDING).limit(50)
