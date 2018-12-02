@@ -17,13 +17,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ActivityCarDetail extends AppCompatActivity {
+public class ActivityCarDetail extends AppCompatActivity implements DialogCarInput.DialogCarInputListener{
     private TextView mCarNameTextView;
     private TextView mPlateNumberTextView;
     private TextView mCarImageUrlTextView;
     private CollectionReference carCollRef;
     private String mCarId;
-    private DocumentSnapshot mCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,29 +48,28 @@ public class ActivityCarDetail extends AppCompatActivity {
 
         carCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
         mCarId = getIntent().getStringExtra(Constants.EXTRA_DOC_ID);
-        carCollRef.document(mCarId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        mCar = document;
-                        displayCar();
-                    } else {
-                        Log.d(Constants.log_tag, "No such document");
-                    }
-                } else {
-                    Log.d(Constants.log_tag, "get failed with ", task.getException());
-                }
-            }
-        });
+        displayCar();
     }
 
     private void displayCar() {
-        if (mCar != null) {
-            mCarNameTextView.setText((String) mCar.get(Constants.KEY_CARNAME));
-            mPlateNumberTextView.setText((String) mCar.get(Constants.KEY_PLATENUMBER));
-            mCarImageUrlTextView.setText((String) mCar.get(Constants.KEY_CARIMAGEURL));
+        if (mCarId != null) {
+            carCollRef.document(mCarId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            mCarNameTextView.setText((String) document.get(Constants.KEY_CARNAME));
+                            mPlateNumberTextView.setText((String) document.get(Constants.KEY_PLATENUMBER));
+                            mCarImageUrlTextView.setText((String) document.get(Constants.KEY_CARIMAGEURL));
+                        } else {
+                            Log.d(Constants.log_tag, "No such document");
+                        }
+                    } else {
+                        Log.d(Constants.log_tag, "get failed with ", task.getException());
+                    }
+                }
+            });
         }
     }
 
@@ -90,30 +88,20 @@ public class ActivityCarDetail extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_modify_car:
-                DialogCarInput dialog = new DialogCarInput();
+                DialogCarInput dialog = DialogCarInput.newInstance(mCarId);
                 dialog.show(getSupportFragmentManager(),getString(R.string.cardetail_name));
-                // mCarId
                 return true;
 
             case R.id.action_delete_car:
                 carCollRef.document(mCarId).delete();
-                finish();
+                ActivityCarDetail.this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(Constants.log_tag, "ActivityCarDetail RESUMED ");
-        displayCar();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(Constants.log_tag, "ActivityCarDetail STARTED ");
+    public void applyChanges(String carId) {
         displayCar();
     }
 }

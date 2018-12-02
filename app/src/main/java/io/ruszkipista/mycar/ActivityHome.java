@@ -128,9 +128,9 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
                 return true;
 
             case R.id.action_modify_car:
-                DialogCarInput dialog = new DialogCarInput();
+                //call static factory method for injecting parameter
+                DialogCarInput dialog = DialogCarInput.newInstance(mCar.getId());
                 dialog.show(getSupportFragmentManager(),getString(R.string.cardetail_name));
-                //mCar.getId()
                 return true;
 
             case R.id.action_signout:

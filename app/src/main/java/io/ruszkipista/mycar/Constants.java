@@ -3,6 +3,7 @@ package io.ruszkipista.mycar;
 public class Constants {
     public static final String firebase_collection_car = "car";
     public static final String firebase_collection_transaction = "transaction";
+    public static final String KEY_CAR_ID = "carId";
     public static final String KEY_USER_ID = "uid";
     public static final String KEY_CARNAME = "carname";
     public static final String KEY_CARIMAGEURL = "carImageUrl";

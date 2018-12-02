@@ -3,10 +3,8 @@ package io.ruszkipista.mycar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
@@ -31,7 +29,15 @@ public class DialogCarInput extends AppCompatDialogFragment {
     private EditText plateNumberEditTextView;
     private EditText carImageUrlEditTextView;
     private DialogCarInputListener listener;
-    private String carId;
+    private String mCarId;
+
+    public static DialogCarInput newInstance(String carId) {
+        DialogCarInput dialog = new DialogCarInput();
+        Bundle args = new Bundle();
+        args.putString(Constants.KEY_CAR_ID, carId);
+        dialog.setArguments(args);
+        return dialog;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -45,9 +51,14 @@ public class DialogCarInput extends AppCompatDialogFragment {
 
         mAuth = FirebaseAuth.getInstance();
 
-        if (carId != null) {
+        //attempt to load passed arguments
+        if (getArguments() != null) {
+            mCarId = getArguments().getString(Constants.KEY_CAR_ID);
+        }
+
+        if (mCarId != null) {
             builder.setTitle(R.string.cardialog_title_edit);
-            carCollRef.document(carId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            carCollRef.document(mCarId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
@@ -82,12 +93,20 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     car.put(Constants.KEY_CARNAME, carName);
                     car.put(Constants.KEY_PLATENUMBER, plateNumber);
                     car.put(Constants.KEY_CARIMAGEURL, carImageUrl);
-                    if ( carId != null) {
-                        carCollRef.document(carId).set(car);
+                    if ( mCarId != null) {
+                        carCollRef.document(mCarId).set(car).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    listener.applyChanges(mCarId);
+                                } else {
+                                    Log.d(Constants.log_tag, "update failed with ", task.getException());
+                                }
+                            }
+                        });
                     } else {
-                        carId = carCollRef.add(car).getResult().getId();
+                        mCarId = carCollRef.add(car).getResult().getId();
                     }
-                    listener.applyChanges(carId);
                 }
             });
         return builder.create();
