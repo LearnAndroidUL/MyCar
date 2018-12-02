@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,6 +37,7 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 public class ActivityHome extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     private TextView mCarNameTextView;
     private TextView mPlateNumberTextView;
     private ImageView mCarImageImageView;
@@ -47,6 +49,9 @@ public class ActivityHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,7 +68,8 @@ public class ActivityHome extends AppCompatActivity {
         mPlateNumberTextView = findViewById(R.id.home_platenumber_field);
         mCarImageImageView = findViewById(R.id.home_car_image);
 
-        carRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+        carRef.whereEqualTo(Constants.KEY_USER_ID,mAuth.getCurrentUser().getUid())
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
@@ -133,6 +139,10 @@ public class ActivityHome extends AppCompatActivity {
 
             case R.id.action_modify_car:
                 showCarInputDialog();
+                return true;
+            case R.id.action_signout:
+                mAuth.signOut();
+                finish();
                 return true;
         };
         return super.onOptionsItemSelected(menuItem);

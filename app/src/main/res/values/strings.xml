@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">MyCar</string>
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Register New User</string>
+    <string name="invalid_email">This email address is invalid</string>
+    <string name="invalid_password">Password is too short</string>
+    <string name="action_signout">Sign out</string>
+    <!-- Strings related to app -->
     <string name="action_switch_car">Switch car</string>
     <string name="action_fuel_consumption">Fuel consumption</string>
     <string name="action_transaction_list">Transaction list</string>
