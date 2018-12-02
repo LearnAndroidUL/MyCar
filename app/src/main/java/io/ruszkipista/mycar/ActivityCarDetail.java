@@ -40,9 +40,8 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogCarInput dialog = new DialogCarInput();
+                DialogCarInput dialog = DialogCarInput.newInstance(null);
                 dialog.show(getSupportFragmentManager(),getString(R.string.cardetail_name));
-                // null
             }
         });
 
@@ -102,6 +101,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
 
     @Override
     public void applyChanges(String carId) {
+        mCarId = carId;
         displayCar();
     }
 }

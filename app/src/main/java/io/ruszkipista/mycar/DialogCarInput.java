@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,7 +29,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
     private EditText carNameEditTextView;
     private EditText plateNumberEditTextView;
     private EditText carImageUrlEditTextView;
-    private DialogCarInputListener listener;
+    private DialogCarInputListener mListener;
     private String mCarId;
 
     public static DialogCarInput newInstance(String carId) {
@@ -43,7 +44,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_cardetail,null);
+        final View dialogView = inflater.inflate(R.layout.dialog_cardetail,null);
 
         carNameEditTextView = dialogView.findViewById(R.id.cardialog_carname_field);
         plateNumberEditTextView = dialogView.findViewById(R.id.cardialog_platenumber_field);
@@ -98,14 +99,29 @@ public class DialogCarInput extends AppCompatDialogFragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    listener.applyChanges(mCarId);
+                                    mListener.applyChanges(mCarId);
                                 } else {
                                     Log.d(Constants.log_tag, "update failed with ", task.getException());
                                 }
                             }
                         });
                     } else {
-                        mCarId = carCollRef.add(car).getResult().getId();
+                         carCollRef.add(car).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                             @Override
+                             public void onComplete(@NonNull Task<DocumentReference> task) {
+                                 if (task.isSuccessful()) {
+                                     DocumentReference documentReference = task.getResult();
+                                     if (documentReference != null) {
+                                         mCarId = documentReference.getId();
+                                         mListener.applyChanges(mCarId);
+                                     } else {
+                                         Log.d(Constants.log_tag, "No such document");
+                                     }
+                                 } else {
+                                     Log.d(Constants.log_tag, "insert failed with ", task.getException());
+                                 }
+                             }
+                         });
                     }
                 }
             });
@@ -116,7 +132,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (DialogCarInputListener) context;
+            mListener = (DialogCarInputListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()+"must implement DialogCarInputListener");
         }
