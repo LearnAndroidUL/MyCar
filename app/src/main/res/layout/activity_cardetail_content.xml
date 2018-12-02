@@ -12,6 +12,11 @@
     android:padding="20dp">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_carname" />
+
+    <TextView
         android:id="@+id/cardetail_carname_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,13 +24,6 @@
         android:gravity="center"
         android:text="@string/cardialog_carname_hint"
         android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/cardetail_image"
-        android:contentDescription="@string/content_car_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -41,4 +39,17 @@
         android:text="@string/cardialog_platenumber_hint"
         android:textSize="16sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_carimageurl" />
+
+    <TextView
+        android:id="@+id/cardetail_carimageurl_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="@string/cardialog_carimageurl_hint"
+        android:textSize="16sp" />
 </LinearLayout>

@@ -31,7 +31,8 @@
         <activity
             android:name=".ActivityCarDetail"
             android:label="@string/cardetail_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

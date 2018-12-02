@@ -1,50 +1,41 @@
 package io.ruszkipista.mycar;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
-public class ActivityHome extends AppCompatActivity {
+public class ActivityHome extends AppCompatActivity implements DialogCarInput.DialogCarInputListener{
     private FirebaseAuth mAuth;
     private TextView mCarNameTextView;
     private TextView mPlateNumberTextView;
     private ImageView mCarImageImageView;
     private List<DocumentSnapshot> mCarSnapshots = new ArrayList<>();
-    private int mActualCarIndex = -1;
+    private int mActualCarIndex = 0;
     private DocumentSnapshot mCar = null;
-    private CollectionReference carRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
+    private CollectionReference carCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +59,12 @@ public class ActivityHome extends AppCompatActivity {
         mPlateNumberTextView = findViewById(R.id.home_platenumber_field);
         mCarImageImageView = findViewById(R.id.home_car_image);
 
-        carRef.whereEqualTo(Constants.KEY_USER_ID,mAuth.getCurrentUser().getUid())
+        carCollRef.whereEqualTo(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
-                            Log.w(Constants.log_tag, "Firebase listening failed!");
+                            Log.d(Constants.log_tag, "Firebase listening failed!");
                             return;
                         } else {
                             mCarSnapshots = queryDocumentSnapshots.getDocuments();
@@ -81,17 +72,16 @@ public class ActivityHome extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     private void displayCar() {
-        if (mActualCarIndex < 0) {
-            if (mCarSnapshots.size() > 0) {
-                mActualCarIndex = 0;
-                mCar = mCarSnapshots.get(mActualCarIndex);
-            }
-        } else {
+        if (mActualCarIndex >= mCarSnapshots.size()) {
+            getCarNext();
+        }
+        if (mCarSnapshots.size() > 0) {
             mCar = mCarSnapshots.get(mActualCarIndex);
+        } else {
+            mCar = null;
         }
         if (mCar != null) {
             mCarNameTextView.setText((String)mCar.get(Constants.KEY_CARNAME));
@@ -100,11 +90,12 @@ public class ActivityHome extends AppCompatActivity {
             if (!url.isEmpty()) Ion.with(mCarImageImageView).load(url);
             else mCarImageImageView.setImageResource(R.mipmap.ic_launcher);
         }
-
     }
 
     private void getCarNext() {
-        mActualCarIndex = (mActualCarIndex + 1) % mCarSnapshots.size();
+        if (mCarSnapshots.size() > 0) {
+            mActualCarIndex = (mActualCarIndex + 1) % mCarSnapshots.size();
+        }
     }
 
     public void callActivityCarDetail(View view) {
@@ -116,7 +107,6 @@ public class ActivityHome extends AppCompatActivity {
                 context.startActivity(intent);
                 return;
         }
-
     }
 
     @Override
@@ -138,8 +128,11 @@ public class ActivityHome extends AppCompatActivity {
                 return true;
 
             case R.id.action_modify_car:
-                showCarInputDialog();
+                DialogCarInput dialog = new DialogCarInput();
+                dialog.show(getSupportFragmentManager(),getString(R.string.cardetail_name));
+                //mCar.getId()
                 return true;
+
             case R.id.action_signout:
                 mAuth.signOut();
                 finish();
@@ -151,10 +144,16 @@ public class ActivityHome extends AppCompatActivity {
     private void showTransactionInputDialog() {
     }
 
-    private void showCarInputDialog() {
-        DialogCarInput dialog = new DialogCarInput();
-        View view = getLayoutInflater().inflate(R.layout.dialog_cardetail,null,false);
-        dialog.showCarInputDialog(this, view, mCar);
+    @Override
+    public void applyChanges(String carId) {
+        for (int i=0;i<mCarSnapshots.size();i++) {
+            if (mCarSnapshots.get(i).getId().equals(carId)) {
+                mActualCarIndex = i;
+                displayCar();
+                return;
+            }
+        }
+        getCarNext();
+        displayCar();
     }
-
 }
