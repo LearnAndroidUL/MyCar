@@ -66,38 +66,10 @@ public class ActivityCarDetail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEditDialog();
-            }
+                DialogCarInput dialog = new DialogCarInput();
+                View view = getLayoutInflater().inflate(R.layout.dialog_cardetail,null,false);
+                dialog.showCarInputDialog(this, view, null, carRef);            }
         });
-    }
-
-    private void showEditDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_cardetail,null,false);
-        builder.setTitle(R.string.cardialog_title_edit);
-        builder.setView(view);
-        final EditText carNameEditTextView = view.findViewById(R.id.cardetail_carname_field);
-        final EditText plateNumberEditTextView = view.findViewById(R.id.cardetail_platenumber_field);
-        carNameEditTextView.setText((String) mDocSnapshot.get(Constants.KEY_CARNAME));
-        plateNumberEditTextView.setText((String) mDocSnapshot.get(Constants.KEY_PLATENUMBER));
-
-        builder.setNegativeButton(android.R.string.cancel,null);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String carName = carNameEditTextView.getText().toString();
-                String plateNumber = plateNumberEditTextView.getText().toString();
-
-//              update item with captured details
-                Map<String, Object> car = new HashMap< >();
-                car.put(Constants.KEY_CARNAME,carName);
-                car.put(Constants.KEY_PLATENUMBER,plateNumber);
-                car.put(Constants.KEY_CREATED, new Date());
-                mDocRef.update(car);
-            }
-        });
-        builder.create().show();
-
     }
 
     @Override

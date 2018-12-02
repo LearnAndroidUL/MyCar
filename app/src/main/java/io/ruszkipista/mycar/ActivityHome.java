@@ -154,7 +154,7 @@ public class ActivityHome extends AppCompatActivity {
     private void showCarInputDialog() {
         DialogCarInput dialog = new DialogCarInput();
         View view = getLayoutInflater().inflate(R.layout.dialog_cardetail,null,false);
-        dialog.showCarInputDialog(this, view, mCar, carRef);
+        dialog.showCarInputDialog(this, view, mCar);
     }
 
 }
