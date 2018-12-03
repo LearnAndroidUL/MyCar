@@ -99,7 +99,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    mListener.applyChanges(mCarId);
+                                    mListener.applyChangesDialogCarInput(mCarId);
                                 } else {
                                     Log.d(Constants.log_tag, "update failed with ", task.getException());
                                 }
@@ -113,7 +113,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                                      DocumentReference documentReference = task.getResult();
                                      if (documentReference != null) {
                                          mCarId = documentReference.getId();
-                                         mListener.applyChanges(mCarId);
+                                         mListener.applyChangesDialogCarInput(mCarId);
                                      } else {
                                          Log.d(Constants.log_tag, "No such document");
                                      }
@@ -139,6 +139,6 @@ public class DialogCarInput extends AppCompatDialogFragment {
     }
 
     public interface DialogCarInputListener{
-        void applyChanges(String carId);
+        void applyChangesDialogCarInput(String carId);
     }
 }

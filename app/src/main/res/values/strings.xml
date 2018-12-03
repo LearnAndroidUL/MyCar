@@ -20,6 +20,8 @@
     <string name="action_list">List</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
+    <string name="cardialog_delete_title">Remove car</string>
+    <string name="cardialog_delete_message">Are you sure you want to remove this car and all corresponding transactions?</string>
     <string name="default_carname">Car name goes here</string>
     <string name="default_platenumber">Licence plate number goes here</string>
     <string name="cardetail_name">MyCar - Car Details</string>
@@ -32,6 +34,6 @@
     <string name="cardialog_title_add">Add a new car</string>
     <string name="cardialog_title_edit">Edit car details</string>
     <string name="content_car_image">car photo</string>
-    <string name="carlist_title">List of cars</string>
+    <string name="carlist_title">Select a car</string>
 </resources>
 

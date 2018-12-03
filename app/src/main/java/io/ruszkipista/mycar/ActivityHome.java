@@ -143,7 +143,7 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
     }
 
     @Override
-    public void applyChanges(String carId) {
+    public void applyChangesDialogCarInput(String carId) {
         for (int i=0;i<mCarSnapshots.size();i++) {
             if (mCarSnapshots.get(i).getId().equals(carId)) {
                 mActualCarIndex = i;

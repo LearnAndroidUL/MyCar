@@ -132,15 +132,14 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
                 return true;
 
             case R.id.action_delete_car:
-                docCollRef.document(mDocumentSnapshots.get(mActualDocumentIndex).getId()).delete();
-                ActivityCarDetail.this.finish();
+                showConfirmDelete();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void applyChanges(String docId) {
+    public void applyChangesDialogCarInput(String docId) {
         mActualDocumentIndex = getDocumentIndex(docId);
         displayCar();
     }
@@ -159,10 +158,18 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
         builder.create().show();
     }
 
+    private String[] getDocumentLabels() {
+        String[] names = new String[mDocumentSnapshots.size()];
+        for (int i = 0; i < mDocumentSnapshots.size(); i++) {
+            names[i] = (String) mDocumentSnapshots.get(i).get(Constants.KEY_CARNAME);
+        }
+        return names;
+    }
+
     private int getDocumentIndex(String docId) {
         int found = -1;
         for (int i = 0; i < mDocumentSnapshots.size(); i++) {
-            if (docId.equals(mDocumentSnapshots.get(i).getId())) {
+            if (mDocumentSnapshots.get(i).getId().equals(docId)) {
                 found = i;
                 break;
             }
@@ -170,11 +177,23 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
         return found;
     }
 
-    private String[] getDocumentLabels() {
-        String[] names = new String[mDocumentSnapshots.size()];
-        for (int i = 0; i < mDocumentSnapshots.size(); i++) {
-            names[i] = (String) mDocumentSnapshots.get(i).get(Constants.KEY_CARNAME);
-        }
-        return names;
+
+    private void showConfirmDelete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.cardialog_delete_title);
+        builder.setMessage(R.string.cardialog_delete_message);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                docCollRef.document(mDocumentSnapshots.get(mActualDocumentIndex).getId()).delete();
+                if (mDocumentSnapshots.size() == 0){
+                    ActivityCarDetail.this.finish();
+                } else if (mActualDocumentIndex >= mDocumentSnapshots.size()) {
+                    mActualDocumentIndex = mDocumentSnapshots.size() - 1;
+                }
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel,null);
+        builder.create().show();
     }
 }
