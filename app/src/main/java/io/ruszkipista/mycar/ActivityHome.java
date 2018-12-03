@@ -28,7 +28,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class ActivityHome extends AppCompatActivity implements DialogCarInput.DialogCarInputListener{
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private TextView mCarNameTextView;
     private TextView mPlateNumberTextView;
     private ImageView mCarImageImageView;
@@ -40,8 +40,6 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
