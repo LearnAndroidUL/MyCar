@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="io.ruszkipista.mycar.ActivityHome">
     <item
+        android:id="@+id/action_upload_data"
+        android:orderInCategory="100"
+        android:title="@string/action_upload_data"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_swap_car"
         android:orderInCategory="100"
         android:title="@string/action_switch_car"

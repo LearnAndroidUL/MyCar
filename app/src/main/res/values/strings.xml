@@ -10,6 +10,7 @@
     <string name="invalid_password">Password is too short</string>
     <string name="action_signout">Sign out</string>
     <!-- Strings related to app -->
+    <string name="action_upload_data">Upload Data from app</string>
     <string name="action_switch_car">Switch car</string>
     <string name="action_fuel_consumption">Fuel consumption</string>
     <string name="action_transaction_list">Transaction list</string>
