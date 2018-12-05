@@ -83,7 +83,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
             document = null;
         }
         if (document != null) {
-            mCarNameTextView.setText((String) document.get(Constants.KEY_CARNAME));
+            mCarNameTextView.setText((String) document.get(Constants.KEY_NAME));
             mPlateNumberTextView.setText((String) document.get(Constants.KEY_PLATENUMBER));
             mCarImageUrlTextView.setText((String) document.get(Constants.KEY_CARIMAGEURL));
         }
@@ -161,7 +161,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
     private String[] getDocumentLabels() {
         String[] names = new String[mDocumentSnapshots.size()];
         for (int i = 0; i < mDocumentSnapshots.size(); i++) {
-            names[i] = (String) mDocumentSnapshots.get(i).get(Constants.KEY_CARNAME);
+            names[i] = (String) mDocumentSnapshots.get(i).get(Constants.KEY_NAME);
         }
         return names;
     }

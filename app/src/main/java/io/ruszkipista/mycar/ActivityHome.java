@@ -82,7 +82,7 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
             mCar = null;
         }
         if (mCar != null) {
-            mCarNameTextView.setText((String)mCar.get(Constants.KEY_CARNAME));
+            mCarNameTextView.setText((String)mCar.get(Constants.KEY_NAME));
             mPlateNumberTextView.setText((String)mCar.get(Constants.KEY_PLATENUMBER));
             String url = (String)mCar.get(Constants.KEY_CARIMAGEURL);
             if (!url.isEmpty()) Ion.with(mCarImageImageView).load(url);
@@ -121,7 +121,7 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
         // as you specify a parent activity in AndroidManifest.xml.
         switch (menuItem.getItemId()){
             case R.id.action_upload_data:
-                FirestoreUpload.UploadData(mCarSnapshots.get(mActualCarIndex).getId());
+                Constants.UploadData(mCarSnapshots.get(mActualCarIndex).getId());
                 return true;
 
             case R.id.action_swap_car:
