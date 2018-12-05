@@ -65,7 +65,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            carNameEditTextView.setText((String) document.get(Constants.KEY_CARNAME));
+                            carNameEditTextView.setText((String) document.get(Constants.KEY_NAME));
                             plateNumberEditTextView.setText((String) document.get(Constants.KEY_PLATENUMBER));
                             carImageUrlEditTextView.setText((String) document.get(Constants.KEY_CARIMAGEURL));
                         } else {
@@ -91,7 +91,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
 //                  create new item with captured details
                     Map<String, Object> car = new HashMap<>();
                     car.put(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid());
-                    car.put(Constants.KEY_CARNAME, carName);
+                    car.put(Constants.KEY_NAME, carName);
                     car.put(Constants.KEY_PLATENUMBER, plateNumber);
                     car.put(Constants.KEY_CARIMAGEURL, carImageUrl);
                     if ( mCarId != null) {

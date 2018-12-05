@@ -61,7 +61,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.CarViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull CarViewHolder carViewHolder, int i) {
         DocumentSnapshot car = mCarSnapshots.get(i);
-        String carName = (String) car.get(Constants.KEY_CARNAME);
+        String carName = (String) car.get(Constants.KEY_NAME);
         carViewHolder.mCarNameTextView.setText(carName);
         String plateNumber = (String) car.get(Constants.KEY_PLATENUMBER);
         carViewHolder.mPlateNumberTextView.setText(plateNumber);
