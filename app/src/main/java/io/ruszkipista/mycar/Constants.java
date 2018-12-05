@@ -43,6 +43,7 @@ public class Constants {
     public static final String KEY_FUEL_UNIT_ID     = "fuelUnitId";
     public static final String KEY_DOCUMENT_DATE    = "documentDate";
     public static final String KEY_MATERIAL_ID      = "matId";
+    public static final String KEY_MATERIAL_TYPE    = "matType";
     public static final String KEY_PARTNER_ID       = "partnerId";
     public static final String KEY_QUANTITY         = "quantity";
     public static final String KEY_UNIT_PRICE       = "unitPrice";

@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cardetail_carname" />
-
     <TextView
         android:id="@+id/cardetail_carname_field"
         android:layout_width="match_parent"
@@ -28,13 +27,96 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cardetail_platenumber" />
-
     <TextView
         android:id="@+id/cardetail_platenumber_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/cardialog_platenumber_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_country" />
+    <TextView
+        android:id="@+id/cardetail_country_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_country_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_currency" />
+    <TextView
+        android:id="@+id/cardetail_currency_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_currency_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_distanceunit" />
+    <TextView
+        android:id="@+id/cardetail_distanceunit_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_distanceunit_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_fueleconomy" />
+    <TextView
+        android:id="@+id/cardetail_fueleconomy_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_fueleconomy_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_fuelmaterial" />
+    <TextView
+        android:id="@+id/cardetail_fuelmaterial_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_fuelmaterial_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_fuelunit" />
+    <TextView
+        android:id="@+id/cardetail_fuelunit_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_fuelunit_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cardetail_odometerunit" />
+    <TextView
+        android:id="@+id/cardetail_odometerunit_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/cardialog_odometerunit_hint"/>
 
     <TextView
         android:layout_width="match_parent"

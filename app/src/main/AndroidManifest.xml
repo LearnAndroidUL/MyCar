@@ -33,6 +33,11 @@
             android:label="@string/cardetail_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".Material"
+            android:label="@string/materialdetail_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

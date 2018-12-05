@@ -30,11 +30,26 @@
     <string name="cardialog_carname_hint">Enter car name</string>
     <string name="cardetail_platenumber">Licence plate number</string>
     <string name="cardialog_platenumber_hint">Enter licence plate number</string>
+    <string name="cardetail_country">Registration country</string>
+    <string name="cardialog_country_hint">choose country</string>
+    <string name="cardetail_currency">default currency</string>
+    <string name="cardialog_currency_hint">choose currency</string>
+    <string name="cardetail_distanceunit">display distance in unit</string>
+    <string name="cardialog_distanceunit_hint">choose unit of measure</string>
+    <string name="cardetail_fueleconomy">display fuel economy in unit</string>
+    <string name="cardialog_fueleconomy_hint">choose unit of measure</string>
+    <string name="cardetail_fuelmaterial">fuel</string>
+    <string name="cardialog_fuelmaterial_hint">choose default fuel</string>
+    <string name="cardetail_fuelunit">fuel unit</string>
+    <string name="cardialog_fuelunit_hint">choose fuel unit</string>
+    <string name="cardetail_odometerunit">odometer unit</string>
+    <string name="cardialog_odometerunit_hint">choose odometer unit</string>
     <string name="cardetail_carimageurl">car image URL</string>
     <string name="cardialog_carimageurl_hint">Enter car image URL</string>
     <string name="cardialog_title_add">Add a new car</string>
     <string name="cardialog_title_edit">Edit car details</string>
     <string name="content_car_image">car photo</string>
     <string name="carlist_title">Select a car</string>
+    <string name="materialdetail_name">MyCar - Material Details</string>
 </resources>
 
