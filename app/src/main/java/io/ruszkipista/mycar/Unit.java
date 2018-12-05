@@ -54,4 +54,15 @@ public class Unit {
             this.name = name;
             this.unitType = unitType;
         }
+
+    public static String getNameById(String id){
+        String name = null;
+        for (Unit unit:units) {
+            if (id.equals(unit.unitOfMeasure)) {
+                name = unit.name;
+                break;
+            }
+        }
+        return name;
+    }
 }

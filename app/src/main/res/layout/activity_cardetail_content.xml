@@ -129,4 +129,10 @@
         android:layout_height="wrap_content"
         android:text="@string/cardialog_carimageurl_hint"
         android:textSize="10sp" />
+    <ImageView
+        android:id="@+id/cardetail_car_image"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="@string/content_car_image"/>
 </LinearLayout>

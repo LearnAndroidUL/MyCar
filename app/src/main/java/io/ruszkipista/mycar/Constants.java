@@ -28,25 +28,26 @@ public class Constants {
     public static final String firebase_collection_material    = "material";
     public static final String firebase_collection_partner     = "partner";
 //  database field (column) names
-    public static final String KEY_CAR_ID           = "carId";
-    public static final String KEY_USER_ID          = "uid";
-    public static final String KEY_NAME             = "name";
-    public static final String KEY_CARIMAGEURL      = "carImageUrl";
-    public static final String KEY_PLATENUMBER      = "plateNumber";
-    public static final String KEY_CREATED          = "created";
-    public static final String KEY_COUNTRY          = "country";
-    public static final String KEY_DISTANCE_UNIT_ID = "distanceUnitId";
-    public static final String KEY_CURRENCY         = "currency";
-    public static final String KEY_UNIT_TYPE        = "unitType";
-    public static final String KEY_UNIT_OF_MEASURE  = "unitOfMeasure";
-    public static final String KEY_FUEL_ID          = "fuelId";
-    public static final String KEY_FUEL_UNIT_ID     = "fuelUnitId";
-    public static final String KEY_DOCUMENT_DATE    = "documentDate";
-    public static final String KEY_MATERIAL_ID      = "matId";
-    public static final String KEY_MATERIAL_TYPE    = "matType";
-    public static final String KEY_PARTNER_ID       = "partnerId";
-    public static final String KEY_QUANTITY         = "quantity";
-    public static final String KEY_UNIT_PRICE       = "unitPrice";
+    public static final String KEY_USER_ID              = "uid";
+    public static final String KEY_CAR_ID               = "carId";
+    public static final String KEY_NAME                 = "name";
+    public static final String KEY_PLATENUMBER          = "plateNumber";
+    public static final String KEY_COUNTRY              = "country";
+    public static final String KEY_DISTANCE_UNIT_ID     = "distanceUnitId";
+    public static final String KEY_ODOMETER_UNIT_ID     = "odometerUnitId";
+    public static final String KEY_CURRENCY             = "currency";
+    public static final String KEY_UNIT_OF_MEASURE      = "unitOfMeasure";
+    public static final String KEY_FUEL_ECONOMY_UNIT_ID = "fuelEconomyUnitId";
+    public static final String KEY_FUEL_UNIT_ID         = "fuelUnitId";
+    public static final String KEY_FUEL_MATERIAL_ID     = "fuelMaterialId";
+    public static final String KEY_DOCUMENT_DATE        = "documentDate";
+    public static final String KEY_CARIMAGEURL          = "carImageUrl";
+    public static final String KEY_MATERIAL_ID          = "materialId";
+    public static final String KEY_MATERIAL_TYPE        = "materialType";
+    public static final String KEY_PARTNER_ID           = "partnerId";
+    public static final String KEY_QUANTITY             = "quantity";
+    public static final String KEY_UNIT_PRICE           = "unitPrice";
+    public static final String KEY_CREATED              = "created";
 
     //  String uid = FirebaseAuth.getInstance().getUid();
 

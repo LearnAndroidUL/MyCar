@@ -58,6 +58,7 @@ public class ActivityLogin extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(ActivityLogin.this,"Sign In failed", Toast.LENGTH_SHORT).show();
                             }
@@ -72,6 +73,7 @@ public class ActivityLogin extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(ActivityLogin.this,"Sign Up failed", Toast.LENGTH_SHORT).show();
                             }

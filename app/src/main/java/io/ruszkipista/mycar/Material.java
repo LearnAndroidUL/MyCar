@@ -83,4 +83,18 @@ public class Material extends AppCompatActivity implements CodeList{
     public void updateLists(String newMemberId) {
 
     }
+
+    public static String getNameById(List<DocumentSnapshot> documents, String docId){
+        String name = null;
+        DocumentSnapshot ds;
+        int i;
+        for (i=0;i<documents.size();i++) {
+            ds = documents.get(i);
+            if (docId.equals(ds.getId())) {
+                name = (String)ds.get(Constants.KEY_NAME);
+                break;
+            }
+        }
+        return name;
+    }
 }

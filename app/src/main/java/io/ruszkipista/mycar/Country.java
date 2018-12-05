@@ -9,6 +9,7 @@ public class Country {
         private String currency;
 
         public static final List<Country> countries = Arrays.asList(
+                new Country("IE",  "Republic Of Ireland","€"),
                 new Country("HU",  "Hungary",         "Ft"),
                 new Country("NI",  "Northern Ireland","£"),
                 new Country("UK",  "United Kingdom",  "£"),
@@ -20,4 +21,15 @@ public class Country {
             this.name = name;
             this.currency = currency;
         }
+
+    public static String getNameById(String id){
+        String name = null;
+        for (Country country:countries) {
+            if (id.equals(country.code)) {
+                name = country.name;
+                break;
+            }
+        }
+        return name;
     }
+}
