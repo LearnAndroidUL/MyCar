@@ -1,138 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ActivityCarDetail"
-    tools:showIn="@layout/activity_cardetail"
-    android:padding="6dp">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_carname" />
-    <TextView
-        android:id="@+id/cardetail_carname_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_carname_hint"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="48dp"
+        android:padding="6dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ActivityCarDetail"
+        tools:showIn="@layout/activity_cardetail">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_platenumber" />
-    <TextView
-        android:id="@+id/cardetail_platenumber_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/cardialog_platenumber_hint"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_carname" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_country" />
-    <TextView
-        android:id="@+id/cardetail_country_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_country_hint"/>
+        <TextView
+            android:id="@+id/cardetail_carname_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_carname_hint"
+            android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_currency" />
-    <TextView
-        android:id="@+id/cardetail_currency_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_currency_hint"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_platenumber" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_distanceunit" />
-    <TextView
-        android:id="@+id/cardetail_distanceunit_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_distanceunit_hint"/>
+        <TextView
+            android:id="@+id/cardetail_platenumber_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_platenumber_hint" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_fueleconomy" />
-    <TextView
-        android:id="@+id/cardetail_fueleconomy_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_fueleconomy_hint"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_country" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_fuelmaterial" />
-    <TextView
-        android:id="@+id/cardetail_fuelmaterial_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_fuelmaterial_hint"/>
+        <TextView
+            android:id="@+id/cardetail_country_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_country_hint"
+            android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_fuelunit" />
-    <TextView
-        android:id="@+id/cardetail_fuelunit_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_fuelunit_hint"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_currency" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_odometerunit" />
-    <TextView
-        android:id="@+id/cardetail_odometerunit_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:text="@string/cardialog_odometerunit_hint"/>
+        <TextView
+            android:id="@+id/cardetail_currency_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_currency_hint"
+            android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_carimageurl" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_distanceunit" />
 
-    <TextView
-        android:id="@+id/cardetail_carimageurl_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardialog_carimageurl_hint"
-        android:textSize="10sp" />
-    <ImageView
-        android:id="@+id/cardetail_car_image"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="@string/content_car_image"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/cardetail_distanceunit_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_distanceunit_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_fueleconomy" />
+
+        <TextView
+            android:id="@+id/cardetail_fueleconomy_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_fueleconomy_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_fuelmaterial" />
+
+        <TextView
+            android:id="@+id/cardetail_fuelmaterial_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_fuelmaterial_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_fuelunit" />
+
+        <TextView
+            android:id="@+id/cardetail_fuelunit_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_fuelunit_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_odometerunit" />
+
+        <TextView
+            android:id="@+id/cardetail_odometerunit_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cardialog_odometerunit_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_carimageurl" />
+
+        <TextView
+            android:id="@+id/cardetail_carimageurl_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardialog_carimageurl_hint"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/cardetail_car_image"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:contentDescription="@string/content_car_image"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+</ScrollView>

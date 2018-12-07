@@ -1,41 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="6dp">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cardetail_carname" />
-    <EditText
-        android:id="@+id/cardialog_carname_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cardialog_carname_hint"
-        android:inputType="text" />
+        android:orientation="vertical"
+        android:padding="2dp"
+        android:scrollbars="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_platenumber" />
-    <EditText
-        android:id="@+id/cardialog_platenumber_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cardialog_platenumber_hint"
-        android:inputType="textCapWords" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_carname" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cardetail_carimageurl" />
-    <EditText
-        android:id="@+id/cardialog_imageurl_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cardialog_carimageurl_hint"
-        android:inputType="textCapSentences" />
+        <EditText
+            android:id="@+id/cardialog_carname_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_carname_hint"
+            android:inputType="text" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_platenumber" />
+
+        <EditText
+            android:id="@+id/cardialog_platenumber_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_platenumber_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_country" />
+
+        <EditText
+            android:id="@+id/cardialog_CountryId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_country_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_currency" />
+
+        <EditText
+            android:id="@+id/cardialog_CurrencyId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_currency_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_distanceunit" />
+
+        <EditText
+            android:id="@+id/cardialog_DistanceUnitId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_distanceunit_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_odometerunit" />
+
+        <EditText
+            android:id="@+id/cardialog_OdometerUnitId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_odometerunit_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_fuelmaterial" />
+
+        <EditText
+            android:id="@+id/cardialog_FuelMaterialId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_fuelmaterial_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_fuelunit" />
+
+        <EditText
+            android:id="@+id/cardialog_FuelUnitId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_fuelunit_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_fueleconomy" />
+
+        <EditText
+            android:id="@+id/cardialog_FuelEconomyId_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_fueleconomy_hint"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardetail_carimageurl" />
+
+        <EditText
+            android:id="@+id/cardialog_imageurl_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cardialog_carimageurl_hint" />
+
+    </LinearLayout>
+</ScrollView>

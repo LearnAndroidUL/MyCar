@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,9 +27,20 @@ import java.util.Map;
 public class DialogCarInput extends AppCompatDialogFragment {
     private FirebaseAuth mAuth;
     private CollectionReference carCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
-    private EditText carNameEditTextView;
-    private EditText plateNumberEditTextView;
-    private EditText carImageUrlEditTextView;
+    private EditText mCarNameEditText;
+    private EditText mPlateNumberEditText;
+
+    private EditText mCountryIdEditText;
+    private EditText mCurrencyIdEditText;
+    private EditText mDistanceUnitIdEditText;
+    private EditText mOdometerUnitIdEditText;
+    private EditText mFuelMaterialIdEditText;
+    private EditText mFuelUnitIdEditText;
+    private EditText mFuelEconomyIdEditText;
+
+    private EditText mCarImageUrlEditText;
+
+
     private DialogCarInputListener mListener;
     private String mCarId;
 
@@ -46,9 +58,16 @@ public class DialogCarInput extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_cardetail,null);
 
-        carNameEditTextView = dialogView.findViewById(R.id.cardialog_carname_field);
-        plateNumberEditTextView = dialogView.findViewById(R.id.cardialog_platenumber_field);
-        carImageUrlEditTextView = dialogView.findViewById(R.id.cardialog_imageurl_field);
+        mCarNameEditText = dialogView.findViewById(R.id.cardialog_carname_field);
+        mPlateNumberEditText = dialogView.findViewById(R.id.cardialog_platenumber_field);
+        mCountryIdEditText = dialogView.findViewById(R.id.cardialog_CountryId_field);
+        mCurrencyIdEditText = dialogView.findViewById(R.id.cardialog_CurrencyId_field);
+        mDistanceUnitIdEditText = dialogView.findViewById(R.id.cardialog_DistanceUnitId_field);
+        mOdometerUnitIdEditText = dialogView.findViewById(R.id.cardialog_OdometerUnitId_field);
+        mFuelMaterialIdEditText = dialogView.findViewById(R.id.cardialog_FuelMaterialId_field);
+        mFuelUnitIdEditText = dialogView.findViewById(R.id.cardialog_FuelUnitId_field);
+        mFuelEconomyIdEditText = dialogView.findViewById(R.id.cardialog_FuelEconomyId_field);
+        mCarImageUrlEditText = dialogView.findViewById(R.id.cardialog_imageurl_field);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -65,9 +84,16 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            carNameEditTextView.setText((String) document.get(Constants.KEY_NAME));
-                            plateNumberEditTextView.setText((String) document.get(Constants.KEY_PLATENUMBER));
-                            carImageUrlEditTextView.setText((String) document.get(Constants.KEY_CARIMAGEURL));
+                            mCarNameEditText.setText((String) document.get(Constants.KEY_NAME));
+                            mPlateNumberEditText.setText((String) document.get(Constants.KEY_PLATENUMBER));
+                            mCountryIdEditText.setText((String) document.get(Constants.KEY_COUNTRY));
+                            mCurrencyIdEditText.setText((String) document.get(Constants.KEY_CURRENCY));
+                            mDistanceUnitIdEditText.setText((String) document.get(Constants.KEY_DISTANCE_UNIT_ID));
+                            mOdometerUnitIdEditText.setText((String) document.get(Constants.KEY_ODOMETER_UNIT_ID));
+                            mFuelMaterialIdEditText.setText((String) document.get(Constants.KEY_FUEL_MATERIAL_ID));
+                            mFuelUnitIdEditText.setText((String) document.get(Constants.KEY_FUEL_UNIT_ID));
+                            mFuelEconomyIdEditText.setText((String) document.get(Constants.KEY_FUEL_ECONOMY_UNIT_ID));
+                            mCarImageUrlEditText.setText((String) document.get(Constants.KEY_CARIMAGEURL));
                         } else {
                             Log.d(Constants.log_tag, "No such document");
                         }
@@ -85,15 +111,19 @@ public class DialogCarInput extends AppCompatDialogFragment {
                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String carName = carNameEditTextView.getText().toString();
-                    String plateNumber = plateNumberEditTextView.getText().toString();
-                    String carImageUrl = carImageUrlEditTextView.getText().toString();
 //                  create new item with captured details
                     Map<String, Object> car = new HashMap<>();
                     car.put(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid());
-                    car.put(Constants.KEY_NAME, carName);
-                    car.put(Constants.KEY_PLATENUMBER, plateNumber);
-                    car.put(Constants.KEY_CARIMAGEURL, carImageUrl);
+                    car.put(Constants.KEY_NAME, mCarNameEditText.getText().toString());
+                    car.put(Constants.KEY_PLATENUMBER, mPlateNumberEditText.getText().toString());
+                    car.put(Constants.KEY_COUNTRY, mCountryIdEditText.getText().toString());
+                    car.put(Constants.KEY_CURRENCY, mCurrencyIdEditText.getText().toString());
+                    car.put(Constants.KEY_DISTANCE_UNIT_ID, mDistanceUnitIdEditText.getText().toString());
+                    car.put(Constants.KEY_ODOMETER_UNIT_ID, mOdometerUnitIdEditText.getText().toString());
+                    car.put(Constants.KEY_FUEL_MATERIAL_ID, mFuelMaterialIdEditText.getText().toString());
+                    car.put(Constants.KEY_FUEL_UNIT_ID, mFuelUnitIdEditText.getText().toString());
+                    car.put(Constants.KEY_FUEL_ECONOMY_UNIT_ID, mFuelEconomyIdEditText.getText().toString());
+                    car.put(Constants.KEY_CARIMAGEURL, mCarImageUrlEditText.getText().toString());
                     if ( mCarId != null) {
                         carCollRef.document(mCarId).set(car).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
