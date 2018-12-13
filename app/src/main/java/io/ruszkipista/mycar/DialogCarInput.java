@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,8 +31,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
     private CollectionReference carCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
     private EditText mCarNameEditText;
     private EditText mPlateNumberEditText;
-
-    private EditText mCountryIdEditText;
+    private Spinner  mCountryIdSpinner;
     private EditText mCurrencyIdEditText;
     private EditText mDistanceUnitIdEditText;
     private EditText mOdometerUnitIdEditText;
@@ -60,7 +61,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
 
         mCarNameEditText = dialogView.findViewById(R.id.cardialog_carname_field);
         mPlateNumberEditText = dialogView.findViewById(R.id.cardialog_platenumber_field);
-        mCountryIdEditText = dialogView.findViewById(R.id.cardialog_CountryId_field);
+        mCountryIdSpinner = dialogView.findViewById(R.id.cardialog_CountryId_field);
         mCurrencyIdEditText = dialogView.findViewById(R.id.cardialog_CurrencyId_field);
         mDistanceUnitIdEditText = dialogView.findViewById(R.id.cardialog_DistanceUnitId_field);
         mOdometerUnitIdEditText = dialogView.findViewById(R.id.cardialog_OdometerUnitId_field);
@@ -68,6 +69,10 @@ public class DialogCarInput extends AppCompatDialogFragment {
         mFuelUnitIdEditText = dialogView.findViewById(R.id.cardialog_FuelUnitId_field);
         mFuelEconomyIdEditText = dialogView.findViewById(R.id.cardialog_FuelEconomyId_field);
         mCarImageUrlEditText = dialogView.findViewById(R.id.cardialog_imageurl_field);
+
+        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item, Country.getCodeList());
+        mCountryIdSpinner.setAdapter(countryIdAdapter);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -86,7 +91,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                         if (document.exists()) {
                             mCarNameEditText.setText((String) document.get(Constants.KEY_NAME));
                             mPlateNumberEditText.setText((String) document.get(Constants.KEY_PLATENUMBER));
-                            mCountryIdEditText.setText((String) document.get(Constants.KEY_COUNTRY));
+                            mCountryIdSpinner.setId(Country.getIndexById((String)document.get(Constants.KEY_COUNTRY)));
                             mCurrencyIdEditText.setText((String) document.get(Constants.KEY_CURRENCY));
                             mDistanceUnitIdEditText.setText((String) document.get(Constants.KEY_DISTANCE_UNIT_ID));
                             mOdometerUnitIdEditText.setText((String) document.get(Constants.KEY_ODOMETER_UNIT_ID));
@@ -116,7 +121,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     car.put(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid());
                     car.put(Constants.KEY_NAME, mCarNameEditText.getText().toString());
                     car.put(Constants.KEY_PLATENUMBER, mPlateNumberEditText.getText().toString());
-                    car.put(Constants.KEY_COUNTRY, mCountryIdEditText.getText().toString());
+                    car.put(Constants.KEY_COUNTRY, Country.getIdByIndex(mCountryIdSpinner.getId()));
                     car.put(Constants.KEY_CURRENCY, mCurrencyIdEditText.getText().toString());
                     car.put(Constants.KEY_DISTANCE_UNIT_ID, mDistanceUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_ODOMETER_UNIT_ID, mOdometerUnitIdEditText.getText().toString());

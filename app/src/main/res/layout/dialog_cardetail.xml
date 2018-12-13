@@ -39,12 +39,16 @@
             android:layout_height="wrap_content"
             android:text="@string/cardetail_country" />
 
-        <EditText
+        <Spinner
             android:id="@+id/cardialog_CountryId_field"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/cardialog_country_hint"
-            android:inputType="textCapWords" />
+            android:layout_height="wrap_content"/>
+        <!--<EditText-->
+            <!--android:id="@+id/cardialog_CountryId_field"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/cardialog_country_hint"-->
+            <!--android:inputType="textCapWords" />-->
 
         <TextView
             android:layout_width="match_parent"
