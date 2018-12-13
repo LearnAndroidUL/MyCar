@@ -24,10 +24,6 @@ public class Country {
         this.currency = currency;
     }
 
-    public String getCode() {
-        return this.code;
-    }
-
     public static String getNameById(String id) {
         String name = null;
         for (Country country : countries) {
@@ -54,7 +50,7 @@ public class Country {
 
     public static String getIdByIndex(int index) {
         String id = null;
-        id = countries.get(index).getCode();
+        id = countries.get(index).code;
         return id;
     }
 
@@ -65,6 +61,18 @@ public class Country {
             columnList = new String[size];
             for (int i = 0; i < size; i++) {
                 columnList[i] = countries.get(i).code;
+            }
+        }
+        return columnList;
+    }
+
+    public static String[] getNameList() {
+        String[] columnList = null;
+        int size = countries.size();
+        if (size > 0) {
+            columnList = new String[size];
+            for (int i = 0; i < size; i++) {
+                columnList[i] = countries.get(i).name;
             }
         }
         return columnList;

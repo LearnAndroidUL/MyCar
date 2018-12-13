@@ -61,7 +61,6 @@ public class DialogCarInput extends AppCompatDialogFragment {
 
         mCarNameEditText = dialogView.findViewById(R.id.cardialog_carname_field);
         mPlateNumberEditText = dialogView.findViewById(R.id.cardialog_platenumber_field);
-        mCountryIdSpinner = dialogView.findViewById(R.id.cardialog_CountryId_field);
         mCurrencyIdEditText = dialogView.findViewById(R.id.cardialog_CurrencyId_field);
         mDistanceUnitIdEditText = dialogView.findViewById(R.id.cardialog_DistanceUnitId_field);
         mOdometerUnitIdEditText = dialogView.findViewById(R.id.cardialog_OdometerUnitId_field);
@@ -70,8 +69,8 @@ public class DialogCarInput extends AppCompatDialogFragment {
         mFuelEconomyIdEditText = dialogView.findViewById(R.id.cardialog_FuelEconomyId_field);
         mCarImageUrlEditText = dialogView.findViewById(R.id.cardialog_imageurl_field);
 
-        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_spinner_dropdown_item, Country.getCodeList());
+        mCountryIdSpinner = dialogView.findViewById(R.id.cardialog_CountryId_field);
+        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, Country.getNameList());
         mCountryIdSpinner.setAdapter(countryIdAdapter);
 
         mAuth = FirebaseAuth.getInstance();
@@ -91,7 +90,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                         if (document.exists()) {
                             mCarNameEditText.setText((String) document.get(Constants.KEY_NAME));
                             mPlateNumberEditText.setText((String) document.get(Constants.KEY_PLATENUMBER));
-                            mCountryIdSpinner.setId(Country.getIndexById((String)document.get(Constants.KEY_COUNTRY)));
+                            mCountryIdSpinner.setSelection(Country.getIndexById((String)document.get(Constants.KEY_COUNTRY)));
                             mCurrencyIdEditText.setText((String) document.get(Constants.KEY_CURRENCY));
                             mDistanceUnitIdEditText.setText((String) document.get(Constants.KEY_DISTANCE_UNIT_ID));
                             mOdometerUnitIdEditText.setText((String) document.get(Constants.KEY_ODOMETER_UNIT_ID));
@@ -121,7 +120,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     car.put(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid());
                     car.put(Constants.KEY_NAME, mCarNameEditText.getText().toString());
                     car.put(Constants.KEY_PLATENUMBER, mPlateNumberEditText.getText().toString());
-                    car.put(Constants.KEY_COUNTRY, Country.getIdByIndex(mCountryIdSpinner.getId()));
+                    car.put(Constants.KEY_COUNTRY, Country.getIdByIndex((int)mCountryIdSpinner.getSelectedItemId()));
                     car.put(Constants.KEY_CURRENCY, mCurrencyIdEditText.getText().toString());
                     car.put(Constants.KEY_DISTANCE_UNIT_ID, mDistanceUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_ODOMETER_UNIT_ID, mOdometerUnitIdEditText.getText().toString());
