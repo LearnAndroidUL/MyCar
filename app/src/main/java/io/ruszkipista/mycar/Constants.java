@@ -72,26 +72,22 @@ public class Constants {
         AddTrx(carId,"€","20180707","fZXlJhyEUJj9XgzoXKUi","petrol 95","txW3BIH2cJTfqoatQ3jt", 45.49,"L",1.439,183567,"",0,null );
         AddTrx(carId,"€","20180915","fZXlJhyEUJj9XgzoXKUi","petrol 95","txW3BIH2cJTfqoatQ3jt", 44.55,"L",1.459,184231,"",0,null );
         AddTrx(carId,"€","20181013","fZXlJhyEUJj9XgzoXKUi","petrol 95","txW3BIH2cJTfqoatQ3jt", 44.86,"L",1.479,184841,"",0,null );
-        AddTrx(carId,"€","20181126","fZXlJhyEUJj9XgzoXKUi","petrol 95","txW3BIH2cJTfqoatQ3jt", 48.26,"L",1.469,185458,"",0,null );
-
-//        2018.03.03	Cartell.ie history report	25				Value :	3910.98
-//        2018.03.10	Cartell.ie history report	25				Daily cost :	3.77
-//        2018.03.10	purchase	2550			178790	100km cost :	8.57
-//
-//        2018.03.11	12pcs bungee set	3.49
-//        2018.03.11	car seat cover set	10.99
-//        2018.03.11	L type wheel wrench	4.99
-//        2018.03.11	tow rope	4.49
-//        2018.03.11	car foot pump	7.02
-//        2018.03.20	2nd key w/ programmed chip	60					Parkway Shopping Centre
-//
-//        2018.03.16	motortax 1 year		385.00				from 1 Mar 2018 until 28 Feb 2019
-//        2018.03.20	insurance Allianz 95 days		135.44				€520/year, from 20 Mar 2018 until 22 Jun 2018 (permanent car change on Xedos policy)
-//        2018.06.23	insurance Allianz 1 year		407.57				from 23/06/2018 to 22/06/2019
-//
-//        2018.03.22	service Sebastian's Garage	120			178835		oil filter, air filter, 4 spark plug, engine oil
-//        2018.03.16	repairs Sebastian's Garage	830			178821		clutch kit, gearbox bracket, front LHS wishbone, rear brushing, rear axle both side
-//        2018.12.14	service Sebastian's Garage	270			185650		break disc front RHS, coil spring rear RHS
+        AddTrx(carId,"€","20180303","RrjnIoTgSqm79yNSYmnE","Cartell.ie history report","rB19QkTiSw4qpyfuw6uJ", 1,"pc",25,0,"",0,null );
+        AddTrx(carId,"€","20180310","RrjnIoTgSqm79yNSYmnE","Cartell.ie history report","rB19QkTiSw4qpyfuw6uJ", 1,"pc",25,0,"",0,null );
+        AddTrx(carId,"€","20180310","QD3DN24T7dfwd3vgU2xe","car purchase","rB19QkTiSw4qpyfuw6uJ", 1,"pc",2550,178790,"",0,null );
+        AddTrx(carId,"€","20180311","LEo7N90zUmbHish3WW7e","bungee set 12pcs","rB19QkTiSw4qpyfuw6uJ", 1,"pc",3.49,0,"",0,null );
+        AddTrx(carId,"€","20180311","LEo7N90zUmbHish3WW7e","car seat cover set","rB19QkTiSw4qpyfuw6uJ", 1,"pc",10.99,0,"",0,null );
+        AddTrx(carId,"€","20180311","QD3DN24T7dfwd3vgU2xe","wheel wrench L shape","rB19QkTiSw4qpyfuw6uJ", 1,"pc",4.99,0,"",0,null );
+        AddTrx(carId,"€","20180311","QD3DN24T7dfwd3vgU2xe","tow rope","rB19QkTiSw4qpyfuw6uJ", 1,"pc",4.49,0,"",0,null );
+        AddTrx(carId,"€","20180311","QD3DN24T7dfwd3vgU2xe","car foot pump","rB19QkTiSw4qpyfuw6uJ", 1,"pc",7.02,0,"",0,null );
+        AddTrx(carId,"€","20180320","QD3DN24T7dfwd3vgU2xe","door key w/ programmed chip","9LyDCD6WTtvKFNKu2OPF", 1,"pc",60,0,"",0,null );
+        AddTrx(carId,"€","20180316","D2iqqgLodfN7M94ueLX8","motortax","MGLe4PxCsevIgZHmpwfs", 1,"year",385,0,"20180301",1,"year");
+        AddTrx(carId,"€","20180320","jX9rCSS1r5vfOyguSIkv","insurance (permanent car change on Xedos policy)","KjfGmzYUbrgoow3TyCr3", 95,"day",1.4256, 0,"20180320",95,"day");
+        AddTrx(carId,"€","20180623","jX9rCSS1r5vfOyguSIkv","insurance","KjfGmzYUbrgoow3TyCr3", 1,"year",407.57, 0,"20180623",1,"year");
+        AddTrx(carId,"€","20180316","QD3DN24T7dfwd3vgU2xe","clutch kit, gearbox bracket, front LHS wishbone, rear brushing, rear axle both side","qUvg7SvtDUrTkPq7mJ5H", 1,"pc",830, 178821,"",0,null);
+        AddTrx(carId,"€","20180322","LEo7N90zUmbHish3WW7e","oil filter, air filter, 4 spark plug, engine oil","qUvg7SvtDUrTkPq7mJ5H", 1,"pc",120, 178835,"",0,null);
+        AddTrx(carId,"€","20181214","QD3DN24T7dfwd3vgU2xe","break disc front RHS, coil spring rear RHS","qUvg7SvtDUrTkPq7mJ5H", 1,"pc",270, 185700,"",0,null);
+        AddTrx(carId,"€","20181208","RrjnIoTgSqm79yNSYmnE","car test","GQOUbDGZ1p2jZ8I2ap2B", 1,"pc",55, 185687,"",0,null);
     }
 
     private static void AddTrx(String carId,

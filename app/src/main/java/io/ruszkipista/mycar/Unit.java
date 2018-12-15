@@ -19,6 +19,7 @@ public class Unit {
     public static final String VALUE_UNIT_TYPE_AREA         = "AREA";
     public static final String VALUE_UNIT_TYPE_FUEL_ECONOMY = "FECO";
     public static final String VALUE_UNIT_TYPE_CURRENCY     = "CURR";
+    public static final String VALUE_UNIT_TYPE_TIME         = "TIME";
 
     public static final String LITRE           = "L";
     public static final String GALLON_IMPERIAL = "galImp";
@@ -28,19 +29,19 @@ public class Unit {
     public static final String MIperGallI      = "mpgImp";
 
         public static final List<Unit> list = Arrays.asList(
-                new Unit(LITRE,      "litre",           VALUE_UNIT_TYPE_VOLUME),
+                new Unit(LITRE,        "litre",           VALUE_UNIT_TYPE_VOLUME),
                 new Unit("ml",     "milli litre",     VALUE_UNIT_TYPE_VOLUME),
                 new Unit(GALLON_IMPERIAL, "gallon imperial", VALUE_UNIT_TYPE_VOLUME),
-                new Unit(Lper100KM, "L/100km",         VALUE_UNIT_TYPE_FUEL_ECONOMY),
-                new Unit(MIperGallI, "miles/gallon Imp",VALUE_UNIT_TYPE_FUEL_ECONOMY),
+                new Unit(Lper100KM,    "L/100km",         VALUE_UNIT_TYPE_FUEL_ECONOMY),
+                new Unit(MIperGallI,   "miles/gallon Imp",VALUE_UNIT_TYPE_FUEL_ECONOMY),
                 new Unit("kg",     "kilogramme",      VALUE_UNIT_TYPE_MASS),
                 new Unit("g",      "gramme",          VALUE_UNIT_TYPE_MASS),
                 new Unit("lb",     "pound",           VALUE_UNIT_TYPE_MASS),
-                new Unit(KILOMETRE,     "kilometre",       VALUE_UNIT_TYPE_LENGTH),
+                new Unit(KILOMETRE,    "kilometre",       VALUE_UNIT_TYPE_LENGTH),
                 new Unit("m",      "metre",           VALUE_UNIT_TYPE_LENGTH),
                 new Unit("cm",     "centimetre",      VALUE_UNIT_TYPE_LENGTH),
                 new Unit("mm",     "millimetre",      VALUE_UNIT_TYPE_LENGTH),
-                new Unit(MILE,     "mile",            VALUE_UNIT_TYPE_LENGTH),
+                new Unit(MILE,         "mile",            VALUE_UNIT_TYPE_LENGTH),
                 new Unit("ft",     "foot",            VALUE_UNIT_TYPE_LENGTH),
                 new Unit("yd",     "yard",            VALUE_UNIT_TYPE_LENGTH),
                 new Unit("in",     "inch",            VALUE_UNIT_TYPE_LENGTH),
@@ -50,7 +51,10 @@ public class Unit {
                 new Unit("$",      "USA dollar",      VALUE_UNIT_TYPE_CURRENCY),
                 new Unit("€",      "euro",            VALUE_UNIT_TYPE_CURRENCY),
                 new Unit("£",      "pound",           VALUE_UNIT_TYPE_CURRENCY),
-                new Unit("Ft",     "HU forint",       VALUE_UNIT_TYPE_CURRENCY)
+                new Unit("Ft",     "HU forint",       VALUE_UNIT_TYPE_CURRENCY),
+                new Unit("year",   "year",            VALUE_UNIT_TYPE_TIME),
+                new Unit("month",  "year",            VALUE_UNIT_TYPE_TIME),
+                new Unit("day",    "day",             VALUE_UNIT_TYPE_TIME)
                 );
 
         private Unit(String id, String name, String unitType) {
