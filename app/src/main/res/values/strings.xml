@@ -51,5 +51,10 @@
     <string name="content_car_image">car photo</string>
     <string name="carlist_title">Select a car</string>
     <string name="materialdetail_name">MyCar - Material Details</string>
+    <string name="transactions_name">MyCar - Transactions</string>
+    <string name="default_description">description goes here</string>
+    <string name="default_date">date goes here</string>
+    <string name="default_partner">partner name goes here</string>
+    <string name="default_value">currency value goes here</string>
 </resources>
 

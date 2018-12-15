@@ -120,6 +120,12 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (menuItem.getItemId()){
+            case R.id.action_transaction_list:
+                Context context = this;
+                Intent intent = new Intent(context,ActivityTransactions.class);
+                context.startActivity(intent);
+                return true;
+
             case R.id.action_upload_data:
                 Constants.UploadData(mCarSnapshots.get(mActualCarIndex).getId());
                 return true;

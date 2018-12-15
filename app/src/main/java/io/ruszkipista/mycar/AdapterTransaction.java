@@ -19,18 +19,19 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class AdapterCar extends RecyclerView.Adapter<AdapterCar.CarViewHolder>{
-    private List<DocumentSnapshot> mCarSnapshots = new ArrayList<>();
+public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.TransactionViewHolder>{
+    private List<DocumentSnapshot> mTransactionSnapshots = new ArrayList<>();
     private RecyclerView mRecyclerView;
 
-    public AdapterCar(){
-        CollectionReference carRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
-        carRef
-                .orderBy(Constants.KEY_CREATED, Query.Direction.DESCENDING).limit(50)
+    public AdapterTransaction(){
+        CollectionReference transactionRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_transaction);
+        transactionRef
+                .orderBy(Constants.KEY_DOCUMENT_DATE, Query.Direction.DESCENDING).limit(50)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -38,7 +39,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.CarViewHolder>{
                             Log.w(Constants.log_tag, "Firebase listening failed!");
                             return;
                         } else {
-                            mCarSnapshots = queryDocumentSnapshots.getDocuments();
+                            mTransactionSnapshots = queryDocumentSnapshots.getDocuments();
                             notifyDataSetChanged();
                         }
                     }
@@ -53,39 +54,39 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.CarViewHolder>{
 
     @NonNull
     @Override
-    public CarViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemview_car,viewGroup, false);
-        return new CarViewHolder(itemView);
+    public TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemview_transaction,viewGroup, false);
+        return new TransactionViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CarViewHolder carViewHolder, int i) {
-        DocumentSnapshot car = mCarSnapshots.get(i);
-        String carName = (String) car.get(Constants.KEY_NAME);
-        carViewHolder.mCarNameTextView.setText(carName);
-        String plateNumber = (String) car.get(Constants.KEY_PLATENUMBER);
-        carViewHolder.mPlateNumberTextView.setText(plateNumber);
+    public void onBindViewHolder(@NonNull TransactionViewHolder transactionViewHolder, int i) {
+        DocumentSnapshot trx = mTransactionSnapshots.get(i);
+        String description = (String) trx.get(Constants.KEY_DESCRIPTION);
+        transactionViewHolder.mDescriptionTextView.setText(description);
+        String date = ((Date) trx.get(Constants.KEY_DOCUMENT_DATE)).toString();
+        transactionViewHolder.mDateTextView.setText(date);
     }
 
     @Override
     public int getItemCount() {
-        return mCarSnapshots.size();
+        return mTransactionSnapshots.size();
     }
 
-    class CarViewHolder extends RecyclerView.ViewHolder {
-        private TextView mCarNameTextView;
-        private TextView mPlateNumberTextView;
+    class TransactionViewHolder extends RecyclerView.ViewHolder {
+        private TextView mDescriptionTextView;
+        private TextView mDateTextView;
 
-        public CarViewHolder(View itemView){
+        public TransactionViewHolder(View itemView){
             super(itemView);
-            mCarNameTextView = itemView.findViewById(R.id.itemview_carname);
-            mPlateNumberTextView = itemView.findViewById(R.id.itemview_platenumber);
+            mDescriptionTextView = itemView.findViewById(R.id.itemview_trx_description);
+            mDateTextView = itemView.findViewById(R.id.itemview_trx_date);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Context context = view.getContext();
                     Intent intent = new Intent(context,ActivityCarDetail.class);
-                    DocumentSnapshot ds = mCarSnapshots.get(getAdapterPosition());
+                    DocumentSnapshot ds = mTransactionSnapshots.get(getAdapterPosition());
                     intent.putExtra(Constants.EXTRA_DOC_ID, ds.getId());
                     context.startActivity(intent);
                 }
