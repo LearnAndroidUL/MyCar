@@ -125,13 +125,13 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
         if (document != null) {
             mCarNameTextView.setText((String) document.get(Constants.KEY_NAME));
             mPlateNumberTextView.setText((String) document.get(Constants.KEY_PLATENUMBER));
-            mCountryNameTextView.setText(Country.getNameById((String) document.get(Constants.KEY_COUNTRY)));
-            mCurrencyNameTextView.setText(Unit.getNameById( (String) document.get(Constants.KEY_CURRENCY) ));
-            mDistanceUnitTextView.setText(Unit.getNameById( (String) document.get(Constants.KEY_DISTANCE_UNIT_ID) ));
-            mOdometerUnitTextView.setText(Unit.getNameById( (String) document.get(Constants.KEY_ODOMETER_UNIT_ID) ));
-            mFuelMaterialIdTextView.setText(ListGenerator.getColumnById(mMatDocumentSnapshots, Constants.KEY_NAME ,(String) document.get(Constants.KEY_FUEL_MATERIAL_ID)));
-            mFuelUnitIdTextView.setText(Unit.getNameById( (String) document.get(Constants.KEY_FUEL_UNIT_ID) ));
-            mFuelEconomyTextView.setText(Unit.getNameById( (String) document.get(Constants.KEY_FUEL_ECONOMY_UNIT_ID) ));
+            mCountryNameTextView.setText(Country.getColumnValueByFilterValue(Country.COL_ID, (String) document.get(Constants.KEY_COUNTRY_ID), Country.COL_NAME));
+            mCurrencyNameTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID, (String) document.get(Constants.KEY_CURRENCY), Unit.COL_NAME ));
+            mDistanceUnitTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_DISTANCE_UNIT_ID), Unit.COL_NAME ));
+            mOdometerUnitTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_ODOMETER_UNIT_ID), Unit.COL_NAME ));
+            mFuelMaterialIdTextView.setText(ListGenerator.getColumnValueById(mMatDocumentSnapshots, Constants.KEY_NAME ,(String) document.get(Constants.KEY_FUEL_MATERIAL_ID)));
+            mFuelUnitIdTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_FUEL_UNIT_ID), Unit.COL_NAME ));
+            mFuelEconomyTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_FUEL_ECONOMY_UNIT_ID), Unit.COL_NAME ));
             String url = (String)document.get(Constants.KEY_CARIMAGEURL);
             mCarImageUrlTextView.setText(url);
             if (!url.isEmpty()) Ion.with(mCarImageImageView).load(url);

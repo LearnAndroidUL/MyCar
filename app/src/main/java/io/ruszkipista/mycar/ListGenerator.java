@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ListGenerator {
 
-    public static String getColumnById(List<DocumentSnapshot> documents, String returnColumnName, String id){
+    public static String getColumnValueById(List<DocumentSnapshot> documents, String returnColumnName, String id){
         String value = null;
         DocumentSnapshot ds;
         for (int i=0;i<documents.size();i++) {
@@ -19,7 +19,7 @@ public class ListGenerator {
         return value;
     }
 
-    public static String[] getColumnList(List<DocumentSnapshot> documents, String filterColumnName, String filterType, String returnColumnName) {
+    public static String[] getColumnValueList(List<DocumentSnapshot> documents, String filterColumnName, String filterType, String returnColumnName) {
         String[] columnList = null;
         DocumentSnapshot ds;
         int size = countFiltered(documents,filterColumnName,filterType);
@@ -53,9 +53,8 @@ public class ListGenerator {
 
     private static int countFiltered(List<DocumentSnapshot> documents, String columnName, String filterValue) {
         DocumentSnapshot ds;
-        int i;
         int count = 0;
-        for (i=0;i<documents.size();i++) {
+        for (int i=0;i<documents.size();i++) {
             ds = documents.get(i);
             if (filterValue.equals((String)ds.get(columnName))) count++;
         }

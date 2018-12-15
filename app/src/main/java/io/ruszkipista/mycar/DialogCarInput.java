@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,7 +69,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
         mCarImageUrlEditText = dialogView.findViewById(R.id.cardialog_imageurl_field);
 
         mCountryIdSpinner = dialogView.findViewById(R.id.cardialog_CountryId_field);
-        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, Country.getNameList());
+        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, Country.getColumnValueList(null,null, Country.COL_NAME));
         mCountryIdSpinner.setAdapter(countryIdAdapter);
 
         mAuth = FirebaseAuth.getInstance();
@@ -90,7 +89,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                         if (document.exists()) {
                             mCarNameEditText.setText((String) document.get(Constants.KEY_NAME));
                             mPlateNumberEditText.setText((String) document.get(Constants.KEY_PLATENUMBER));
-                            mCountryIdSpinner.setSelection(Country.getIndexById((String)document.get(Constants.KEY_COUNTRY)));
+                            mCountryIdSpinner.setSelection(Country.getIndexByColumnValue(Country.COL_ID, (String)document.get(Constants.KEY_COUNTRY_ID)));
                             mCurrencyIdEditText.setText((String) document.get(Constants.KEY_CURRENCY));
                             mDistanceUnitIdEditText.setText((String) document.get(Constants.KEY_DISTANCE_UNIT_ID));
                             mOdometerUnitIdEditText.setText((String) document.get(Constants.KEY_ODOMETER_UNIT_ID));
@@ -120,7 +119,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     car.put(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid());
                     car.put(Constants.KEY_NAME, mCarNameEditText.getText().toString());
                     car.put(Constants.KEY_PLATENUMBER, mPlateNumberEditText.getText().toString());
-                    car.put(Constants.KEY_COUNTRY, Country.getIdByIndex((int)mCountryIdSpinner.getSelectedItemId()));
+                    car.put(Constants.KEY_COUNTRY_ID, Country.getColumnValueByIndex((int)mCountryIdSpinner.getSelectedItemId(),Country.COL_ID));
                     car.put(Constants.KEY_CURRENCY, mCurrencyIdEditText.getText().toString());
                     car.put(Constants.KEY_DISTANCE_UNIT_ID, mDistanceUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_ODOMETER_UNIT_ID, mOdometerUnitIdEditText.getText().toString());
