@@ -55,9 +55,16 @@ public class ListGenerator {
         int count = 0;
         if (filterValue != null) {
             for (int i = 0; i < documents.size(); i++) {
-                if (filterColumnName == null || filterValue.equals((String) documents.get(i).get(filterColumnName))) {
-                    index = count;
-                    break;
+                if (filterColumnName.equals(Constants.KEY_ID)) {
+                    if (filterValue.equals(documents.get(i).getId())) {
+                        index = count;
+                        break;
+                    }
+                } else {
+                    if (filterValue == null || filterValue.equals((String) documents.get(i).get(filterColumnName))) {
+                        index = count;
+                        break;
+                    }
                 }
                 count++;
             }

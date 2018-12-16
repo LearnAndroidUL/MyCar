@@ -122,7 +122,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                             mCurrencyIdEditText.setText((String) document.get(Constants.KEY_CURRENCY));
                             mDistanceUnitIdEditText.setText((String) document.get(Constants.KEY_DISTANCE_UNIT_ID));
                             mOdometerUnitIdEditText.setText((String) document.get(Constants.KEY_ODOMETER_UNIT_ID));
-                            mFuelMaterialNameSpinner.setSelection(ListGenerator.getIndexByColumnValue(mMatDocumentSnapshots,Constants.KEY_MATERIAL_ID, (String)document.get(Constants.KEY_FUEL_MATERIAL_ID)));
+                            mFuelMaterialNameSpinner.setSelection(ListGenerator.getIndexByColumnValue(mMatDocumentSnapshots,Material.COL_ID, (String)document.get(Constants.KEY_FUEL_MATERIAL_ID)));
                             mFuelUnitIdEditText.setText((String) document.get(Constants.KEY_FUEL_UNIT_ID));
                             mFuelEconomyIdEditText.setText((String) document.get(Constants.KEY_FUEL_ECONOMY_UNIT_ID));
                             mCarImageUrlEditText.setText((String) document.get(Constants.KEY_CARIMAGEURL));
@@ -152,7 +152,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     car.put(Constants.KEY_CURRENCY, mCurrencyIdEditText.getText().toString());
                     car.put(Constants.KEY_DISTANCE_UNIT_ID, mDistanceUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_ODOMETER_UNIT_ID, mOdometerUnitIdEditText.getText().toString());
-                    car.put(Constants.KEY_FUEL_MATERIAL_ID, ListGenerator.getColumnValueByIndex(mMatDocumentSnapshots, (int) mCountryNameSpinner.getSelectedItemId(), Constants.KEY_ID));
+                    car.put(Constants.KEY_FUEL_MATERIAL_ID, ListGenerator.getColumnValueByIndex(mMatDocumentSnapshots, (int) mFuelMaterialNameSpinner.getSelectedItemId(), Material.COL_ID));
                     car.put(Constants.KEY_FUEL_UNIT_ID, mFuelUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_FUEL_ECONOMY_UNIT_ID, mFuelEconomyIdEditText.getText().toString());
                     car.put(Constants.KEY_CARIMAGEURL, mCarImageUrlEditText.getText().toString());
