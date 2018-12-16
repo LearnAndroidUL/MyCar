@@ -20,21 +20,30 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 public class DialogCarInput extends AppCompatDialogFragment {
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private CollectionReference carCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
+    private CollectionReference matCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_material);
+    private List<DocumentSnapshot> mMatDocumentSnapshots = new ArrayList<>();
     private EditText mCarNameEditText;
     private EditText mPlateNumberEditText;
-    private Spinner  mCountryIdSpinner;
+    private Spinner mCountryNameSpinner;
     private EditText mCurrencyIdEditText;
     private EditText mDistanceUnitIdEditText;
     private EditText mOdometerUnitIdEditText;
-    private EditText mFuelMaterialIdEditText;
+    private Spinner mFuelMaterialNameSpinner;
     private EditText mFuelUnitIdEditText;
     private EditText mFuelEconomyIdEditText;
 
@@ -60,17 +69,37 @@ public class DialogCarInput extends AppCompatDialogFragment {
 
         mCarNameEditText = dialogView.findViewById(R.id.cardialog_carname_field);
         mPlateNumberEditText = dialogView.findViewById(R.id.cardialog_platenumber_field);
+        mCountryNameSpinner = dialogView.findViewById(R.id.cardialog_CountryId_field);
         mCurrencyIdEditText = dialogView.findViewById(R.id.cardialog_CurrencyId_field);
         mDistanceUnitIdEditText = dialogView.findViewById(R.id.cardialog_DistanceUnitId_field);
         mOdometerUnitIdEditText = dialogView.findViewById(R.id.cardialog_OdometerUnitId_field);
-        mFuelMaterialIdEditText = dialogView.findViewById(R.id.cardialog_FuelMaterialId_field);
+        mFuelMaterialNameSpinner = dialogView.findViewById(R.id.cardialog_FuelMaterialId_field);
         mFuelUnitIdEditText = dialogView.findViewById(R.id.cardialog_FuelUnitId_field);
         mFuelEconomyIdEditText = dialogView.findViewById(R.id.cardialog_FuelEconomyId_field);
         mCarImageUrlEditText = dialogView.findViewById(R.id.cardialog_imageurl_field);
 
-        mCountryIdSpinner = dialogView.findViewById(R.id.cardialog_CountryId_field);
-        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, Country.getColumnValueList(null,null, Country.COL_NAME));
-        mCountryIdSpinner.setAdapter(countryIdAdapter);
+//      get material master/fuels
+        matCollRef
+                .whereEqualTo(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid())
+                .whereEqualTo(Constants.KEY_MATERIAL_TYPE, MaterialType.MAT_TYPE_FUEL)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.d(Constants.log_tag, "Firebase listening failed!");
+                            return;
+                        } else {
+                            mMatDocumentSnapshots = queryDocumentSnapshots.getDocuments();
+                            ArrayAdapter<String> fuelMaterialIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,
+                                    ListGenerator.getColumnValueList(mMatDocumentSnapshots,null,null,Constants.KEY_NAME));
+                            mFuelMaterialNameSpinner.setAdapter(fuelMaterialIdAdapter);
+                        }
+                    }
+                });
+
+        ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,
+                Country.getColumnValueList(null,null, Country.COL_NAME));
+        mCountryNameSpinner.setAdapter(countryIdAdapter);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -89,11 +118,11 @@ public class DialogCarInput extends AppCompatDialogFragment {
                         if (document.exists()) {
                             mCarNameEditText.setText((String) document.get(Constants.KEY_NAME));
                             mPlateNumberEditText.setText((String) document.get(Constants.KEY_PLATENUMBER));
-                            mCountryIdSpinner.setSelection(Country.getIndexByColumnValue(Country.COL_ID, (String)document.get(Constants.KEY_COUNTRY_ID)));
+                            mCountryNameSpinner.setSelection(Country.getIndexByColumnValue(Country.COL_ID, (String)document.get(Constants.KEY_COUNTRY_ID)));
                             mCurrencyIdEditText.setText((String) document.get(Constants.KEY_CURRENCY));
                             mDistanceUnitIdEditText.setText((String) document.get(Constants.KEY_DISTANCE_UNIT_ID));
                             mOdometerUnitIdEditText.setText((String) document.get(Constants.KEY_ODOMETER_UNIT_ID));
-                            mFuelMaterialIdEditText.setText((String) document.get(Constants.KEY_FUEL_MATERIAL_ID));
+                            mFuelMaterialNameSpinner.setSelection(ListGenerator.getIndexByColumnValue(mMatDocumentSnapshots,Constants.KEY_MATERIAL_ID, (String)document.get(Constants.KEY_FUEL_MATERIAL_ID)));
                             mFuelUnitIdEditText.setText((String) document.get(Constants.KEY_FUEL_UNIT_ID));
                             mFuelEconomyIdEditText.setText((String) document.get(Constants.KEY_FUEL_ECONOMY_UNIT_ID));
                             mCarImageUrlEditText.setText((String) document.get(Constants.KEY_CARIMAGEURL));
@@ -119,11 +148,11 @@ public class DialogCarInput extends AppCompatDialogFragment {
                     car.put(Constants.KEY_USER_ID, mAuth.getCurrentUser().getUid());
                     car.put(Constants.KEY_NAME, mCarNameEditText.getText().toString());
                     car.put(Constants.KEY_PLATENUMBER, mPlateNumberEditText.getText().toString());
-                    car.put(Constants.KEY_COUNTRY_ID, Country.getColumnValueByIndex((int)mCountryIdSpinner.getSelectedItemId(),Country.COL_ID));
+                    car.put(Constants.KEY_COUNTRY_ID, Country.getColumnValueByIndex((int) mCountryNameSpinner.getSelectedItemId(),Country.COL_ID));
                     car.put(Constants.KEY_CURRENCY, mCurrencyIdEditText.getText().toString());
                     car.put(Constants.KEY_DISTANCE_UNIT_ID, mDistanceUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_ODOMETER_UNIT_ID, mOdometerUnitIdEditText.getText().toString());
-                    car.put(Constants.KEY_FUEL_MATERIAL_ID, mFuelMaterialIdEditText.getText().toString());
+                    car.put(Constants.KEY_FUEL_MATERIAL_ID, ListGenerator.getColumnValueByIndex(mMatDocumentSnapshots, (int) mCountryNameSpinner.getSelectedItemId(), Constants.KEY_ID));
                     car.put(Constants.KEY_FUEL_UNIT_ID, mFuelUnitIdEditText.getText().toString());
                     car.put(Constants.KEY_FUEL_ECONOMY_UNIT_ID, mFuelEconomyIdEditText.getText().toString());
                     car.put(Constants.KEY_CARIMAGEURL, mCarImageUrlEditText.getText().toString());

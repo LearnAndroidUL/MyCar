@@ -38,7 +38,7 @@
     <string name="cardialog_distanceunit_hint">choose unit of measure</string>
     <string name="cardetail_fueleconomy">display fuel economy in unit</string>
     <string name="cardialog_fueleconomy_hint">choose unit of measure</string>
-    <string name="cardetail_fuelmaterial">fuel</string>
+    <string name="cardetail_fuelmaterial">fuel material</string>
     <string name="cardialog_fuelmaterial_hint">choose default fuel</string>
     <string name="cardetail_fuelunit">fuel unit</string>
     <string name="cardialog_fuelunit_hint">choose fuel unit</string>
