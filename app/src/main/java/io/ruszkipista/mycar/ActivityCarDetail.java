@@ -129,7 +129,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
             mCurrencyNameTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID, (String) document.get(Constants.KEY_CURRENCY), Unit.COL_NAME ));
             mDistanceUnitTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_DISTANCE_UNIT_ID), Unit.COL_NAME ));
             mOdometerUnitTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_ODOMETER_UNIT_ID), Unit.COL_NAME ));
-            mFuelMaterialIdTextView.setText(ListGenerator.getColumnValueById(mMatDocumentSnapshots, Constants.KEY_NAME ,(String) document.get(Constants.KEY_FUEL_MATERIAL_ID)));
+            mFuelMaterialIdTextView.setText(ListGenerator.getColumnValueById(mMatDocumentSnapshots, Material.COL_NAME ,(String) document.get(Constants.KEY_FUEL_MATERIAL_ID)));
             mFuelUnitIdTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_FUEL_UNIT_ID), Unit.COL_NAME ));
             mFuelEconomyTextView.setText(Unit.getColumnValueByFilterValue(Unit.COL_ID,  (String) document.get(Constants.KEY_FUEL_ECONOMY_UNIT_ID), Unit.COL_NAME ));
             String url = (String)document.get(Constants.KEY_CARIMAGEURL);
@@ -137,27 +137,6 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
             if (!url.isEmpty()) Ion.with(mCarImageImageView).load(url);
             else mCarImageImageView.setImageResource(R.mipmap.ic_launcher);
         }
-/*
-if (mCarId != null) {
-carCollRef.document(mCarId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-@Override
-public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-if (task.isSuccessful()) {
-DocumentSnapshot document = task.getResult();
-if (document.exists()) {
-mCarNameTextView.setText((String) document.get(Constants.KEY_CARNAME));
-mPlateNumberTextView.setText((String) document.get(Constants.KEY_PLATENUMBER));
-mCarImageUrlTextView.setText((String) document.get(Constants.KEY_CARIMAGEURL));
-} else {
-Log.d(Constants.log_tag, "No such document");
-}
-} else {
-Log.d(Constants.log_tag, "get failed with ", task.getException());
-}
-}
-});
-}
-*/
     }
 
     @Override

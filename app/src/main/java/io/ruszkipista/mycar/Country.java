@@ -89,7 +89,9 @@ public class Country {
     public static String getColumnValueByFilterValue(String filterColumnName, String filterValue, String returnColumnName) {
         String value = null;
         for (int i = 0; i < list.size(); i++) {
-            if (filterValue.equals(getColumnValue(list.get(i),filterColumnName))) {
+            if (filterValue == null
+                    || filterColumnName == null
+                    || filterValue.equals(getColumnValue(list.get(i),filterColumnName))) {
                 value = getColumnValue(list.get(i), returnColumnName);
                 break;
             }
@@ -101,7 +103,9 @@ public class Country {
         int index = -1;
         int count = 0;
         for (int i = 0; i < list.size(); i++) {
-            if (filterValue.equals(getColumnValue(list.get(i),filterColumnName))) {
+            if (filterValue == null
+                    || filterColumnName == null
+                    || filterValue.equals(getColumnValue(list.get(i),filterColumnName))) {
                 index = count;
                 break;
             }

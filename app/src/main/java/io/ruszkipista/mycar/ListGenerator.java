@@ -29,7 +29,9 @@ public class ListGenerator {
             columnList = new String[size];
             for (int i = 0; i < documents.size(); i++) {
                 ds = documents.get(i);
-                if (filterColumnName == null || filterValue.equals(ds.get(filterColumnName))) {
+                if (filterValue == null
+                        || filterColumnName == null
+                        || filterValue.equals(ds.get(filterColumnName))) {
                     if (returnColumnName.equals(Constants.KEY_ID)) {
                         columnList[i] = ds.getId();
                     } else {
@@ -44,7 +46,9 @@ public class ListGenerator {
     private static int countFiltered(List<DocumentSnapshot> documents, String filterColumnName, String filterValue) {
         int count = 0;
         for (int i = 0; i < documents.size(); i++) {
-            if (filterColumnName == null || filterValue.equals((String) documents.get(i).get(filterColumnName)))
+            if (filterValue == null
+                    || filterColumnName == null
+                    || filterValue.equals((String) documents.get(i).get(filterColumnName)))
                 count++;
         }
         return count;
@@ -61,7 +65,9 @@ public class ListGenerator {
                         break;
                     }
                 } else {
-                    if (filterValue == null || filterValue.equals((String) documents.get(i).get(filterColumnName))) {
+                    if (filterValue == null
+                            || filterColumnName == null
+                            || filterValue.equals((String) documents.get(i).get(filterColumnName))) {
                         index = count;
                         break;
                     }
@@ -74,10 +80,14 @@ public class ListGenerator {
 
     public static String getColumnValueByIndex(List<DocumentSnapshot> documents, int index, String returnColumnName) {
         String value = null;
-        if (returnColumnName.equals(Constants.KEY_ID)) {
-            value = (String) documents.get(index).getId();
-        } else {
-            value = (String) documents.get(index).get(returnColumnName);
+        if (returnColumnName != null
+                && index >= 0
+                && index < documents.size()) {
+            if (returnColumnName.equals(Constants.KEY_ID)) {
+                value = (String) documents.get(index).getId();
+            } else {
+                value = (String) documents.get(index).get(returnColumnName);
+            }
         }
         return value;
     }
