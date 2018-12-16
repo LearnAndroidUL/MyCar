@@ -27,29 +27,34 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class ActivityHome extends AppCompatActivity implements DialogCarInput.DialogCarInputListener{
+public class ActivityHome extends AppCompatActivity
+        implements DialogCarInput.DialogCarInputListener,
+                    DialogTransactionInput.DialogTransactionInputListener{
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private TextView mCarNameTextView;
     private TextView mPlateNumberTextView;
     private ImageView mCarImageImageView;
     private List<DocumentSnapshot> mCarSnapshots = new ArrayList<>();
+    private List<DocumentSnapshot> mTrxSnapshots = new ArrayList<>();
     private int mActualCarIndex = 0;
     private DocumentSnapshot mCar = null;
     private CollectionReference carCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_car);
+    private CollectionReference trxCollRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_transaction);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_home);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTransactionInputDialog();
+                DialogTransactionInput dialog = DialogTransactionInput.newInstance(mCar.getId(),null);
+                dialog.show(getSupportFragmentManager(), getString(R.string.transactiondetail_name));
             }
         });
 
@@ -150,19 +155,21 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private void showTransactionInputDialog() {
-    }
-
     @Override
     public void applyChangesDialogCarInput(String carId) {
         for (int i=0;i<mCarSnapshots.size();i++) {
             if (mCarSnapshots.get(i).getId().equals(carId)) {
                 mActualCarIndex = i;
                 displayCar();
-                return;
+                break;
             }
         }
         getCarNext();
         displayCar();
+    }
+
+    @Override
+    public void applyChangesDialogTransactionInput(String transactionId) {
+       displayCar();
     }
 }

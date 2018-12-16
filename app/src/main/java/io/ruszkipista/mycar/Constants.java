@@ -36,7 +36,7 @@ public class Constants {
     public static final String KEY_DISTANCE_UNIT_ID     = "distanceUnitId";
     public static final String KEY_ODOMETER_UNIT_ID     = "odometerUnitId";
     public static final String KEY_CURRENCY             = "currency";
-    public static final String KEY_UNIT_OF_MEASURE      = "unitOfMeasure";
+    public static final String KEY_QUANTITY_UNIT        = "quantityUnit";
     public static final String KEY_FUEL_ECONOMY_UNIT_ID = "fuelEconomyUnitId";
     public static final String KEY_FUEL_UNIT_ID         = "fuelUnitId";
     public static final String KEY_FUEL_MATERIAL_ID     = "fuelMaterialId";
@@ -97,7 +97,7 @@ public class Constants {
                                String description,
                                String partnerId,
                                double quantity,
-                               String unitOfMeasure,
+                               String quantityUnit,
                                double unitPrice,
                                int    odometer,
                                String validFrom,
@@ -113,7 +113,7 @@ public class Constants {
         data.put(Constants.KEY_DESCRIPTION, description);
         data.put(Constants.KEY_PARTNER_ID, partnerId);
         data.put(Constants.KEY_QUANTITY, quantity);
-        data.put(Constants.KEY_UNIT_OF_MEASURE, unitOfMeasure);
+        data.put(Constants.KEY_QUANTITY_UNIT, quantityUnit);
         data.put(Constants.KEY_UNIT_PRICE, unitPrice);
         data.put(Constants.KEY_ODOMETER, odometer);
         data.put(Constants.KEY_VALID_FROM, getDate(validFrom));

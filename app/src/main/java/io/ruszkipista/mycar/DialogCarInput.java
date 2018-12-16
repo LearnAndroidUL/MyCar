@@ -46,12 +46,14 @@ public class DialogCarInput extends AppCompatDialogFragment {
     private Spinner mFuelMaterialNameSpinner;
     private EditText mFuelUnitIdEditText;
     private EditText mFuelEconomyIdEditText;
-
     private EditText mCarImageUrlEditText;
-
+    private String mCarId;
 
     private DialogCarInputListener mListener;
-    private String mCarId;
+
+    public interface DialogCarInputListener{
+        void applyChangesDialogCarInput(String carId);
+    }
 
     public static DialogCarInput newInstance(String carId) {
         DialogCarInput dialog = new DialogCarInput();
@@ -91,7 +93,7 @@ public class DialogCarInput extends AppCompatDialogFragment {
                         } else {
                             mMatDocumentSnapshots = queryDocumentSnapshots.getDocuments();
                             ArrayAdapter<String> fuelMaterialIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,
-                                    ListGenerator.getColumnValueList(mMatDocumentSnapshots,null,null,Constants.KEY_NAME));
+                                    ListGenerator.getColumnValueList(mMatDocumentSnapshots,null,null,Material.COL_NAME));
                             mFuelMaterialNameSpinner.setAdapter(fuelMaterialIdAdapter);
                         }
                     }
@@ -100,8 +102,6 @@ public class DialogCarInput extends AppCompatDialogFragment {
         ArrayAdapter<String> countryIdAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,
                 Country.getColumnValueList(null,null, Country.COL_NAME));
         mCountryNameSpinner.setAdapter(countryIdAdapter);
-
-        mAuth = FirebaseAuth.getInstance();
 
         //attempt to load passed arguments
         if (getArguments() != null) {
@@ -200,7 +200,4 @@ public class DialogCarInput extends AppCompatDialogFragment {
         }
     }
 
-    public interface DialogCarInputListener{
-        void applyChangesDialogCarInput(String carId);
-    }
 }

@@ -88,8 +88,18 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
         transactionViewHolder.mDescriptionTextView.setText(description);
         String date = DateFormat.getDateInstance(DateFormat.MEDIUM).format(((Date) trx.get(Constants.KEY_DOCUMENT_DATE)).getTime());
         transactionViewHolder.mDateTextView.setText(date);
-        double price = (double) trx.get(Constants.KEY_UNIT_PRICE);
-        double quantity = (double) trx.get(Constants.KEY_QUANTITY);
+        double price;
+        try {
+            price = (double) trx.get(Constants.KEY_UNIT_PRICE);
+        } catch (Exception e) {
+            price = 0.0;
+        }
+        double quantity;
+        try {
+            quantity = (double) trx.get(Constants.KEY_QUANTITY);
+        } catch (Exception e) {
+            quantity = 0.0;
+        }
         transactionViewHolder.mValueTextView.setText(String.format("%.2f",price*quantity));
         String partnerId = (String) trx.get(Constants.KEY_PARTNER_ID);
         String partnerName = ListGenerator.getColumnValueById(mPartnerSnapshots,Constants.KEY_NAME,partnerId);
@@ -118,7 +128,7 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
                 @Override
                 public void onClick(View view) {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context,ActivityCarDetail.class);
+                    Intent intent = new Intent(context,ActivityTransactionDetail.class);
                     DocumentSnapshot ds = mTransactionSnapshots.get(getAdapterPosition());
                     intent.putExtra(Constants.KEY_TRANSACTION_ID, ds.getId());
                     context.startActivity(intent);

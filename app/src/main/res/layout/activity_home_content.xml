@@ -32,7 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cardetail_platenumber" />
-
     <TextView
         android:id="@+id/home_platenumber_field"
         android:layout_width="match_parent"
@@ -40,6 +39,20 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="@string/cardialog_platenumber_hint"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_fueleconomy" />
+
+    <TextView
+        android:id="@+id/home_fueleconomy_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="7.45 L/100km"
         android:textSize="16sp" />
 
 </LinearLayout>

@@ -51,7 +51,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_cardetail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cardetail);
         setSupportActionBar(toolbar);
 
         mCarNameTextView = findViewById(R.id.cardetail_carname_field);
@@ -66,7 +66,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
         mCarImageUrlTextView = findViewById(R.id.cardetail_carimageurl_field);
         mCarImageImageView= findViewById(R.id.cardetail_car_image);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_cardetail);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

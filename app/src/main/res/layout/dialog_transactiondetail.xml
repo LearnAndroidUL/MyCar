@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="2dp"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transactiondialog_material" />
+        <Spinner
+            android:id="@+id/transactiondialog_material_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/transactiondialog_material_hint" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transactiondialog_description" />
+        <EditText
+            android:id="@+id/transactiondialog_description_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/transactiondialog_description_hint"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transactiondialog_docdate" />
+        <CalendarView
+            android:id="@+id/transactiondialog_docdate_field"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:showWeekNumber="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transactiondialog_odometer" />
+        <EditText
+            android:id="@+id/transactiondialog_odometer_field"
+            android:layout_width="@dimen/decimal_number_field"
+            android:layout_height="wrap_content"
+            android:hint="@string/transactiondialog_odometer_hint"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transactiondialog_partner" />
+        <Spinner
+            android:id="@+id/transactiondialog_partner_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/transactiondialog_partner_hint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transactiondialog_quantity" />
+
+            <EditText
+                android:id="@+id/transactiondialog_quantity_field"
+                android:layout_width="@dimen/decimal_number_field"
+                android:layout_height="wrap_content"
+                android:hint="@string/transactiondialog_quantity_hint"
+                android:inputType="numberDecimal" />
+            <Spinner
+                android:id="@+id/transactiondialog_quantityuom_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/transactiondialog_quantityuom_hint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transactiondialog_price" />
+            <EditText
+                android:id="@+id/transactiondialog_price_field"
+                android:layout_width="@dimen/decimal_number_field"
+                android:layout_height="wrap_content"
+                android:hint="@string/transactiondialog_price_hint"
+                android:inputType="numberDecimal" />
+            <TextView
+                android:id="@+id/transactiondialog_currency_field"
+                android:text="€"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transactiondialog_validfrom" />
+        <CalendarView
+            android:id="@+id/transactiondialog_validfrom_field"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:showWeekNumber="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transactiondialog_validitylength" />
+            <EditText
+                android:id="@+id/transactiondialog_validitylength_field"
+                android:layout_width="@dimen/decimal_number_field"
+                android:layout_height="wrap_content"
+                android:hint="@string/transactiondialog_validitylength_hint"
+                android:inputType="numberDecimal" />
+            <Spinner
+                android:id="@+id/transactiondialog_vallengthuom_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/transactiondialog_vallengthuom_hint" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

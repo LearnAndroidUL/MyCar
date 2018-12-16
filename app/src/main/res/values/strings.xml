@@ -22,7 +22,7 @@
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
     <string name="cardialog_delete_title">Remove car</string>
-    <string name="cardialog_delete_message">Are you sure you want to remove this car and all corresponding transactions?</string>
+    <string name="cardialog_delete_message">Are you sure you want to remove this car and all related transactions?</string>
     <string name="default_carname">Car name goes here</string>
     <string name="default_platenumber">Licence plate number goes here</string>
     <string name="cardetail_name">MyCar - Car Details</string>
@@ -56,5 +56,27 @@
     <string name="default_date">date goes here</string>
     <string name="default_partner">partner name goes here</string>
     <string name="default_value">currency value goes here</string>
+    <string name="transactiondetail_name">MyCar - Transaction Details</string>
+    <string name="transactiondialog_material">Material</string>
+    <string name="transactiondialog_material_hint">choose material</string>
+    <string name="transactiondialog_description">Description</string>
+    <string name="transactiondialog_description_hint">Enter description</string>
+    <string name="transactiondialog_docdate">Document date</string>
+    <string name="transactiondialog_odometer">Odometer status</string>
+    <string name="transactiondialog_odometer_hint">enter odometer</string>
+    <string name="transactiondialog_partner">Partner</string>
+    <string name="transactiondialog_partner_hint">choose partner</string>
+    <string name="transactiondialog_quantity">Quantity</string>
+    <string name="transactiondialog_quantity_hint">1</string>
+    <string name="transactiondialog_quantityuom_hint">1</string>
+    <string name="transactiondialog_price">Price</string>
+    <string name="transactiondialog_price_hint">enter price</string>
+    <string name="transactiondialog_validfrom">Start of validity</string>
+    <string name="transactiondialog_validitylength">Length validity</string>
+    <string name="transactiondialog_validitylength_hint">1</string>
+    <string name="transactiondialog_vallengthuom_hint">year</string>
+    <string name="transactiondialog_title_add">Add a new transaction</string>
+    <string name="transactiondialog_title_edit">Edit transaction details</string>
+    <string name="home_fueleconomy">average fuel consumption</string>
 </resources>
 

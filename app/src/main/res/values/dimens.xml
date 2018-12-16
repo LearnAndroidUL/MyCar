@@ -1,3 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="uom_spinner">60sp</dimen>
+    <dimen name="decimal_number_field">120sp</dimen>
 </resources>
