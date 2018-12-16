@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="6dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/itemview_trx_description"
@@ -51,7 +51,7 @@
                 android:textColor="@android:color/darker_gray" />
 
             <TextView
-                android:id="@+id/itemview_value"
+                android:id="@+id/itemview_trx_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"

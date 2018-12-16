@@ -89,7 +89,7 @@ public class ActivityCarDetail extends AppCompatActivity implements DialogCarInp
                         } else {
                             mCarDocumentSnapshots = queryDocumentSnapshots.getDocuments();
                             // get argument from caller activity
-                            mActualDocumentIndex = getDocumentIndex(getIntent().getStringExtra(Constants.EXTRA_DOC_ID));
+                            mActualDocumentIndex = getDocumentIndex(getIntent().getStringExtra(Constants.KEY_CAR_ID));
                             loadMaterials();
                         }
                     }

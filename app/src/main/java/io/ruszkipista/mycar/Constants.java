@@ -20,7 +20,6 @@ import java.util.TimeZone;
 public class Constants {
 //  internal technical constants
     public static final String log_tag = "MyCarLog";
-    public static final String EXTRA_DOC_ID = "document_id";
     public static final String CARSHAPEURL = "https://visualpharm.com/assets/881/Car-595b40b75ba036ed117d57e9.svg";
 //  firestore collection names
     public static final String firebase_collection_car         = "car";
@@ -48,6 +47,7 @@ public class Constants {
     public static final String KEY_UNIT_TYPE            = "unitType";
     public static final String KEY_MATERIAL_TYPE        = "materialType";
     public static final String KEY_EXPENSE_TYPE         = "expenseType";
+    public static final String KEY_TRANSACTION_ID       = "transactionId";
     public static final String KEY_PARTNER_ID           = "partnerId";
     public static final String KEY_QUANTITY             = "quantity";
     public static final String KEY_UNIT_PRICE           = "unitPrice";

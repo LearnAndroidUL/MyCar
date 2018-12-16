@@ -101,7 +101,7 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
             case R.id.home_car_image:
                 Context context = view.getContext();
                 Intent intent = new Intent(context,ActivityCarDetail.class);
-                intent.putExtra(Constants.EXTRA_DOC_ID, mCar.getId());
+                intent.putExtra(Constants.KEY_CAR_ID, mCar.getId());
                 context.startActivity(intent);
                 return;
         }
@@ -123,6 +123,7 @@ public class ActivityHome extends AppCompatActivity implements DialogCarInput.Di
             case R.id.action_transaction_list:
                 Context context = this;
                 Intent intent = new Intent(context,ActivityTransactions.class);
+                intent.putExtra(Constants.KEY_CAR_ID, mCar.getId());
                 context.startActivity(intent);
                 return true;
 

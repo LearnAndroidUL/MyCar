@@ -28,7 +28,11 @@ public class ActivityTransactions extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        final AdapterTransaction transactionAdapter = new AdapterTransaction();
+
+//      get CarID from parameter of the Activity call
+        String carId = getIntent().getStringExtra(Constants.KEY_CAR_ID);
+//      pass CarID to the Adaptor
+        final AdapterTransaction transactionAdapter = new AdapterTransaction(carId);
         recyclerView.setAdapter(transactionAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
